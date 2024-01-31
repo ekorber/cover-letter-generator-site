@@ -1,10 +1,10 @@
 
 
 function ProfileSettingsPage() {
-    return (
-      <>
-      </>
-    );
-  }
-  
-  export default ProfileSettingsPage;
+  return (
+    <>
+    </>
+  );
+}
+
+export default ProfileSettingsPage;

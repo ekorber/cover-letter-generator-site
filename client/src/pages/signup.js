@@ -1,10 +1,10 @@
 
 
 function SignUpPage() {
-    return (
-      <>
-      </>
-    );
-  }
-  
-  export default SignUpPage;
+  return (
+    <>
+    </>
+  );
+}
+
+export default SignUpPage;

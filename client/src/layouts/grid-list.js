@@ -10,11 +10,11 @@ const List = styled.div`
 `;
 
 function GridList({ itemMinWidth=200, gap=10, padding=10, children }) {
-    return (
-      <List itemMinWidth={itemMinWidth} gap={gap} padding={padding}>
-        {children}
-      </List>
-    );
-  }
-  
-  export default GridList;
+  return (
+    <List itemMinWidth={itemMinWidth} gap={gap} padding={padding}>
+      {children}
+    </List>
+  );
+}
+
+export default GridList;

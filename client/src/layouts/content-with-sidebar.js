@@ -19,27 +19,27 @@ const Sidebar = styled.aside`
 `;
 
 export function LeftSidebarSplitLayout({children}) {
-    return (
-      <LeftSplitLayout>
-        <Sidebar>
-          {children[0]}
-        </Sidebar>
-        <Content>
-          {children[1]}
-        </Content>
-      </LeftSplitLayout>
-    );
-  }
+  return (
+    <LeftSplitLayout>
+      <Sidebar>
+        {children[0]}
+      </Sidebar>
+      <Content>
+        {children[1]}
+      </Content>
+    </LeftSplitLayout>
+  );
+}
 
 export function RightSidebarSplitLayout({children}) {
-    return (
-      <RightSplitLayout>
-        <Content>
-          {children[0]}
-        </Content>
-        <Sidebar>
-          {children[1]}
-        </Sidebar>
-      </RightSplitLayout>
-    );
-  }
+  return (
+    <RightSplitLayout>
+      <Content>
+        {children[0]}
+      </Content>
+      <Sidebar>
+        {children[1]}
+      </Sidebar>
+    </RightSplitLayout>
+  );
+}
