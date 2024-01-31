@@ -1,15 +1,14 @@
 import styled from 'styled-components'
 
-const Sidebar = styled.div`
+const Layout = styled.div`
     height: ${({height}) => height};
-    background-color: ${({color}) => color};
 `;
 
-function StickyScrollLayout({ height='800px', backgroundColor, children }) {
+function StickyScrollLayout({ height, className, children }) {
     return (
-        <Sidebar height={height} color={backgroundColor} className="overflow-auto w-full h-full">
+        <Layout height={height} className={`overflow-auto w-full h-full ${className}`}>
             {children}
-        </Sidebar>
+        </Layout>
     );
 }
 

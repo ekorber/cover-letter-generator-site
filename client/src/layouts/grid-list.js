@@ -4,14 +4,12 @@ const List = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(${(props) => props.itemMinWidth}px, 1fr));
     gap: ${(props) => props.gap}px;
-    width: 100%;
-    padding: ${(props) => props.padding}px;
     justify-items: center;
 `;
 
-function GridListLayout({ itemMinWidth=200, gap=10, padding=10, children }) {
+function GridListLayout({ itemMinWidth=200, gap=10, className, children }) {
   return (
-    <List itemMinWidth={itemMinWidth} gap={gap} padding={padding}>
+    <List itemMinWidth={itemMinWidth} gap={gap} className={`${className}`}>
       {children}
     </List>
   );

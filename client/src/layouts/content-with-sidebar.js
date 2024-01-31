@@ -18,9 +18,9 @@ const Sidebar = styled.aside`
     grid-area: sidebar;
 `;
 
-export function LeftSidebarSplitLayout({children}) {
+export function LeftSidebarSplitLayout({className, children}) {
   return (
-    <LeftSplitLayout>
+    <LeftSplitLayout className={`${className}`}>
       <Sidebar>
         {children[0]}
       </Sidebar>
@@ -31,9 +31,9 @@ export function LeftSidebarSplitLayout({children}) {
   );
 }
 
-export function RightSidebarSplitLayout({children}) {
+export function RightSidebarSplitLayout({className, children}) {
   return (
-    <RightSplitLayout>
+    <RightSplitLayout className={`${className}`}>
       <Content>
         {children[0]}
       </Content>
