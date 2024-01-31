@@ -9,7 +9,7 @@ const List = styled.div`
     justify-items: center;
 `;
 
-function GridList({ itemMinWidth=200, gap=10, padding=10, children }) {
+function GridListLayout({ itemMinWidth=200, gap=10, padding=10, children }) {
   return (
     <List itemMinWidth={itemMinWidth} gap={gap} padding={padding}>
       {children}
@@ -17,4 +17,4 @@ function GridList({ itemMinWidth=200, gap=10, padding=10, children }) {
   );
 }
 
-export default GridList;
+export default GridListLayout;
