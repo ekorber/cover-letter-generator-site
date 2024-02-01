@@ -1,45 +1,20 @@
 import styled from 'styled-components'
 
-const LeftSplitLayout = styled.div`
-    display: grid;
-    grid-template-areas: 'sidebar content content content content';
+const Container = styled.div`
+    width: ${(props) => props.width}%;
 `;
 
-const RightSplitLayout = styled.div`
-    display: grid;
-    grid-template-areas: 'content content content content sidebar';
-`;
-
-const Content = styled.div`
-    grid-area: content;
-`;
-
-const Sidebar = styled.aside`
-    grid-area: sidebar;
-`;
-
-export function LeftSidebarSplitLayout({className, children}) {
+function SplitLayout({split=50, className, children}) {
   return (
-    <LeftSplitLayout className={`${className}`}>
-      <Sidebar>
+    <div className={`flex ${className}`}>
+      <Container width={split}>
         {children[0]}
-      </Sidebar>
-      <Content>
+      </Container>
+      <Container width={100-split}>
         {children[1]}
-      </Content>
-    </LeftSplitLayout>
+      </Container>
+    </div>
   );
 }
 
-export function RightSidebarSplitLayout({className, children}) {
-  return (
-    <RightSplitLayout className={`${className}`}>
-      <Content>
-        {children[0]}
-      </Content>
-      <Sidebar>
-        {children[1]}
-      </Sidebar>
-    </RightSplitLayout>
-  );
-}
+export default SplitLayout;
