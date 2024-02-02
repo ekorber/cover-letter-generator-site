@@ -1,6 +1,6 @@
 function HistoryListItem({ company, position, dateCreated, className }) {
     return (
-        <div className={`text-white relative my-2 p-5 bg-red-700 flex rounded-lg ${className}`}>
+        <div className={`text-white shadow-xl relative my-2 p-5 bg-red-700 flex rounded-lg ${className}`}>
             <div className="flex-initial w-full">
                 <p className="text-sm font-bold">{company}</p>
                 <p className="text-sm italic">{position}</p>
