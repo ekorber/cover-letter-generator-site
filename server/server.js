@@ -50,12 +50,12 @@ const documentGenerationHistory = [
 ];
 
 // Route to return a user's template information
-app.post('/users/:userId/templates', (req, res) => {
+app.post('/users/templates', (req, res) => {
   res.json(templateList);
 });
 
 // Route to return a user's historical document generation information
-app.post('/users/:userId/generated-docs-history', (req, res) => {
+app.post('/users/generated-docs-history', (req, res) => {
   res.json(documentGenerationHistory);
 });
 

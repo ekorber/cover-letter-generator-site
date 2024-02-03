@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import TemplateCard from "./template-card";
 import GridListLayout from "../layouts/grid-list";
 
@@ -7,11 +8,15 @@ function TemplateGrid() {
     const [templates, setTemplates] = useState([]);
 
     useEffect(() => {
-        // Fetch cover letter template list from an API
-        fetch('/users/1/templates')
-            .then(response => response.json())
-            .then(data => setTemplates(data))
-            .catch(error => console.error('Error fetching list:', error));
+        axios.post('/users/templates', {
+            userId: 1,
+        })
+        .then(function (response) {
+            setTemplates(response.data)
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
     }, []); // Empty dependency array means this effect runs once on mount
 
     return (
