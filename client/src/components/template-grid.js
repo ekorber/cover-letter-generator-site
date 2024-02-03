@@ -26,7 +26,7 @@ function TemplateGrid() {
                     <TemplateCard key={template.id} name={template.name} />
                 ))}
 
-                <TemplateCard name={'New Template...'} />    
+                <TemplateCard name={'New Template...'} isListItem={false} />    
             </GridListLayout>
         </div>
     );
