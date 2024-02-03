@@ -8,13 +8,13 @@ function DashboardPage() {
   return (
     <SplitLayout split={20} className='p-5 gap-5'>
       <div>
-        <PrimaryButton className='bg-gradient-to-b from-blue-400 to-blue-500 text-slate-100 font-medium shadow-lg mb-4 w-full'>Manage Templates</PrimaryButton>
+        <PrimaryButton className='mb-4 w-full'>Manage Templates</PrimaryButton>
         <StickyScrollLayout height='85dvh' className='rounded-lg bg-cyan-500 shadow-sm'>
           <HistoryList />
         </StickyScrollLayout>
       </div>
       <div>
-        <PrimaryButton className='bg-gradient-to-b from-blue-400 to-blue-500 text-slate-100 font-medium shadow-lg mb-4 w-28 float-end'>Profile</PrimaryButton>
+        <PrimaryButton className='mb-4 w-28 float-end'>Profile</PrimaryButton>
         <StickyScrollLayout height='85dvh' className='mt-20 rounded-lg bg-cyan-500 shadow-lg'>
           <TemplateGrid />
         </StickyScrollLayout>
