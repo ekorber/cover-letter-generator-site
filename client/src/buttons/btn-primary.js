@@ -1,6 +1,6 @@
-function PrimaryButton({ className, children }) {
+function PrimaryButton({ onClick, className, children }) {
   return (
-    <button className={`h-16 rounded-lg w-full text-white ${className}`}>{children}</button>
+    <button onClick={() => {if (onClick) {onClick()}}} className={`h-16 rounded-lg ${className}`}>{children}</button>
   );
 }
 
