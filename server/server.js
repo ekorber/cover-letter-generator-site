@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const port = 5000
 
+app.use(express.json())
+
 // Dummy user data
 const templateList = [
   {
@@ -58,6 +60,11 @@ app.post('/users/templates', (req, res) => {
 app.post('/users/generated-docs-history', (req, res) => {
   res.json(documentGenerationHistory);
 });
+
+app.post('/users/update-settings', (req, res) => {
+  console.log(req.body)
+  res.sendStatus(200)
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
