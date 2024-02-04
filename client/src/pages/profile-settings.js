@@ -81,7 +81,8 @@ function ProfileSettingsPage() {
               value={profile.website}
               onChange={handleChange} /></label>
 
-          <p className="text-center text-sm mt-6">*You can safely change the default 'Email' setting without it changing the email used to login. To change your login email, see Account Management options below.</p>
+          <p className="text-center text-sm mt-6">*You can safely change the default 'Email' setting without it 
+          changing the email used to login. To change your login email, see Account Management options below.</p>
 
           <PrimaryButton type="submit" className='mt-2'>Save Settings</PrimaryButton>
         </form>
