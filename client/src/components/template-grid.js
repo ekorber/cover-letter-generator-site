@@ -20,7 +20,7 @@ function TemplateGrid() {
     }, []); // Empty dependency array means this effect runs once on mount
 
     return (
-        <div className='p-5 h-full bg-gradient-to-b from-blue-500 overscroll-contain'>
+        <div className='p-5 h-full bg-gradient-to-b from-blue-600 overscroll-contain'>
             <GridListLayout gap={40} className='p-8'>
                 {templates.map(template => (
                     <TemplateCard key={template.id} name={template.name} />

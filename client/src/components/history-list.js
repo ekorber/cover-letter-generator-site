@@ -20,7 +20,7 @@ function HistoryList() {
 
 
     return (
-        <div className='p-5 h-full bg-gradient-to-b from-blue-500 overscroll-contain'>
+        <div className='p-5 h-full bg-gradient-to-b from-green-600 overscroll-contain'>
             {coverLetterHistory.map(doc => (
                 <HistoryListItem key={doc.id} company={doc.company} position={doc.position} dateCreated={doc.dateCreated} />
             ))}
