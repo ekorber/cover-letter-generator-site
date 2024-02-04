@@ -7,8 +7,8 @@ function TemplateCard({ name, isListItem=true }) {
                 <p className='text-center text-slate-900 max-w-48 text-shadow-lg'>{name}</p>
             </div>
             {
-                isListItem ? (<PrimaryButton className='w-28 mb-5 block'>Generate</PrimaryButton>) :
-                    (<PrimaryButton className='w-32 mb-5 block'>Create New</PrimaryButton>)
+                isListItem ? <PrimaryButton className='w-28 mb-5 block'>Generate</PrimaryButton> :
+                    <PrimaryButton className='w-32 mb-5 block'>Create New</PrimaryButton>
             }
         </div>
     );
