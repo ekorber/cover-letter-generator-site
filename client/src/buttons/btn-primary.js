@@ -1,6 +1,15 @@
-function PrimaryButton({ onClick, className, children }) {
+import styled from 'styled-components'
+
+const Button = styled.button`
+  background: linear-gradient(to bottom, ${({fromColor}) => fromColor}, ${({toColor}) => toColor});
+`;
+
+function PrimaryButton({ onClick, fromColor='rgb(59 130 246)', toColor='rgb(29 78 216)', className, children }) {
   return (
-    <button onClick={() => {if (onClick) {onClick()}}} className={`h-16 rounded-lg bg-gradient-to-b from-blue-400 to-blue-500 text-slate-100 font-medium shadow-lg ${className}`}>{children}</button>
+    <Button onClick={() => {if (onClick) {onClick()}}}
+            fromColor={fromColor} 
+            toColor={toColor} 
+            className={`h-16 rounded-lg text-slate-100 font-medium shadow-lg ${className}`}>{children}</Button>
   );
 }
 
