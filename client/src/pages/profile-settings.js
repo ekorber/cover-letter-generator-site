@@ -38,45 +38,45 @@ function ProfileSettingsPage() {
   return (
     <>
       <Link to="/dashboard"><PrimaryButton className='mb-4 w-28'>Dashboard</PrimaryButton></Link>
-      <div className="w-56 mx-auto">
+      <div className="w-full max-w-xl p-5 mx-auto">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           
           <label>First Name <input
               type="text"
               name="fname"
-              className=" p-1 border-2 border-slate-200 shadow-inner"
+              className="w-full p-2 border-2 border-slate-200 shadow-inner"
               value={profile.fname}
               onChange={handleChange} /></label>
           
           <label>Last Name <input
               type="text"
               name="lname"
-              className="p-1 border-2 border-slate-200 shadow-inner"
+              className="w-full p-2 border-2 border-slate-200 shadow-inner"
               value={profile.lname}
               onChange={handleChange} /></label>
 
           <label>Email <input
               type="email"
               name="email"
-              className="p-1 border-2 border-slate-200 shadow-inner"
+              className="w-full p-2 border-2 border-slate-200 shadow-inner"
               value={profile.email}
               onChange={handleChange} /></label>
           
           <label>Phone Number <input
               type="tel"
               name="phoneNumber"
-              className="p-1 border-2 border-slate-200 shadow-inner"
+              className="w-full p-2 border-2 border-slate-200 shadow-inner"
               value={profile.phoneNumber}
               onChange={handleChange} /></label>
           
           <label>Website <input
               type="url"
               name="website"
-              className="p-1 border-2 border-slate-200 shadow-inner"
+              className="w-full p-2 border-2 border-slate-200 shadow-inner"
               value={profile.website}
               onChange={handleChange} /></label>
 
-          <PrimaryButton type="submit" className='mt-8'>Save Settings</PrimaryButton>
+          <PrimaryButton type="submit" className='mt-4'>Save Settings</PrimaryButton>
         </form>
       </div>
     </>
