@@ -1,6 +1,7 @@
 const express = require('express')
+const path = require('path')
 const app = express()
-const port = 5000
+const port = process.env.PORT || 5000
 
 app.use(express.json())
 
@@ -65,6 +66,11 @@ app.post('/users/update-settings', (req, res) => {
   console.log(req.body)
   res.sendStatus(200)
 })
+
+// Handle React routing, return all requests to React app
+// app.get('*', function(req, res) {
+//   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
