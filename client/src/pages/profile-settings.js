@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import PrimaryButton from "../components/buttons/btn-primary";
-import { red500, red700, purple600, purple800 } from '../colors';
+import { red500, red700, red900, purple600, purple700, purple800, purple950 } from '../colors';
 
 function ProfileSettingsPage() {
 
@@ -90,9 +90,9 @@ function ProfileSettingsPage() {
         </div>
         <div className="flex flex-col gap-4 w-full max-w-xl p-5 mx-auto xl:mr-auto xl:ml-0">
           <h1 className="font-bold text-center text-2xl mt-12 xl:mt-0 mb-5 xl:mb-22">Account Management</h1>
-          <PrimaryButton fromColor={purple600} toColor={purple800} >Change Account Email</PrimaryButton>
-          <PrimaryButton fromColor={purple600} toColor={purple800} >Change Account Password</PrimaryButton>
-          <PrimaryButton fromColor={red500} toColor={red700} >Delete Account</PrimaryButton>
+          <PrimaryButton fromColor={purple600} toColor={purple800} hoverFromColor={purple700} hoverToColor={purple950}>Change Account Email</PrimaryButton>
+          <PrimaryButton fromColor={purple600} toColor={purple800} hoverFromColor={purple700} hoverToColor={purple950}>Change Account Password</PrimaryButton>
+          <PrimaryButton fromColor={red500} toColor={red700} hoverFromColor={red700} hoverToColor={red900}>Delete Account</PrimaryButton>
         </div>
       </div>
     </>
