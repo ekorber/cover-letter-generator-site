@@ -1,4 +1,4 @@
-import PrimaryButton from "../buttons/btn-primary";
+import PrimaryButton from "./buttons/btn-primary"
 
 function TemplateCard({ name, isListItem=true }) {
     return (

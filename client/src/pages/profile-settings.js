@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import PrimaryButton from "../buttons/btn-primary";
+import PrimaryButton from "../components/buttons/btn-primary";
 import { red500, red700, purple600, purple800 } from '../colors';
 
 function ProfileSettingsPage() {

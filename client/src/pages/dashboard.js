@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import SplitLayout from '../layouts/split-layout';
 import StickyScrollLayout from '../layouts/sticky-scroll-content';
-import PrimaryButton from '../buttons/btn-primary';
+import PrimaryButton from '../components/buttons/btn-primary';
 import HistoryList from '../components/history-list';
 import TemplateGrid from '../components/template-grid';
 import { green500, green700 } from '../colors';

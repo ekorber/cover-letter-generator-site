@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import PrimaryButton from "../buttons/btn-primary";
+import PrimaryButton from "../components/buttons/btn-primary";
 
 function TemplateEditorPage() {
   return (
