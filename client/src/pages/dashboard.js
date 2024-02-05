@@ -4,7 +4,7 @@ import StickyScrollLayout from '../layouts/sticky-scroll-content';
 import PrimaryButton from '../components/buttons/btn-primary';
 import HistoryList from '../components/history-list';
 import TemplateGrid from '../components/template-grid';
-import { green500, green700 } from '../colors';
+import { green500, green700, green900 } from '../colors';
 
 function DashboardPage() {
   return (
@@ -16,7 +16,16 @@ function DashboardPage() {
         </StickyScrollLayout>
       </div>
       <div>
-        <Link to="/profile"><PrimaryButton fromColor={green500} toColor={green700} className='mb-4 w-full'>Profile</PrimaryButton></Link>
+        <Link to="/profile">
+          <PrimaryButton 
+            fromColor={green500}
+            toColor={green700}
+            hoverFromColor={green700}
+            hoverToColor={green900}
+            className='mb-4 w-full'>
+              Profile
+          </PrimaryButton>
+        </Link>
         <StickyScrollLayout height='85dvh' className='rounded-lg bg-emerald-300 shadow-sm'>
           <HistoryList />
         </StickyScrollLayout>
