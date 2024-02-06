@@ -67,6 +67,11 @@ app.post('/users/update-settings', (req, res) => {
   res.sendStatus(200)
 })
 
+app.post('/users/submit-template', (req, res) => {
+  console.log(req.body)
+  res.sendStatus(200)
+})
+
 // Handle React routing, return all requests to React app
 // app.get('*', function(req, res) {
 //   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
