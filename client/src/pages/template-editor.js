@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
-import PrimaryButton from "../components/buttons/btn-primary";
-import { red500, red700, red900, green500, green700, green900 } from '../colors';
 import TrashIcon from "../components/svg/trash-icon";
+import RedButton from "../components/buttons/btn-red";
+import BlueButton from "../components/buttons/btn-blue";
+import GreenButton from "../components/buttons/btn-green";
 
 function TemplateEditorPage() {
 
@@ -119,7 +120,7 @@ Best Regards,
   return (
     <>
       <div className="m-5">
-        <Link to="/dashboard"><PrimaryButton className='mb-4 w-56'>Back to Dashboard</PrimaryButton></Link>  
+        <Link to="/dashboard"><BlueButton className='mb-4 w-56'>Back to Dashboard</BlueButton></Link>  
       </div>
       <div className="w-full max-w-xl p-5 mx-auto">
           <h1 className="font-bold text-center text-2xl -mt-5 mb-10">Edit Template</h1>
@@ -156,18 +157,13 @@ Best Regards,
                   placeholder="(Optional)"
                   value={item.varValue}
                   onChange={(e) => handleVariableChange(e, item.id)}/>
-                <PrimaryButton  onClick={() => removeVariableInput(item.id)} 
-                                fromColor={red500}
-                                toColor={red700}
-                                hoverFromColor={red700}
-                                hoverToColor={red900}
-                                className='w-36'>
-                                  <TrashIcon className='mx-auto' width={27} height={27} />
-                                </PrimaryButton>
+                <RedButton onClick={() => removeVariableInput(item.id)} className='w-36'>
+                  <TrashIcon className='mx-auto' width={27} height={27} />
+                </RedButton>
               </div>
             ))}
 
-            <PrimaryButton className='mb-10' type="button" onClick={addVariableInput} fromColor={green500} toColor={green700} hoverFromColor={green700} hoverToColor={green900}>Add Variable</PrimaryButton>
+            <GreenButton className='mb-10' type="button" onClick={addVariableInput}>Add Variable</GreenButton>
 
             <label className="font-light">Template Body <textarea
               required
@@ -180,7 +176,7 @@ Best Regards,
 
             <p className="text-center -mt-1 mb-10 underline decoration-dotted italic text-sm">The variables [Current Date], [Company] and [Position] are available by default.</p>
 
-            <PrimaryButton type="submit" className='mt-5 mb-7'>Save Template</PrimaryButton>
+            <BlueButton type="submit" className='mt-5 mb-7'>Save Template</BlueButton>
           </form>
         </div>
     </>

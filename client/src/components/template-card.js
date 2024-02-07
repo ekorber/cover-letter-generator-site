@@ -1,4 +1,4 @@
-import PrimaryButton from "./buttons/btn-primary"
+import BlueButton from "./buttons/btn-blue"
 
 function TemplateCard({ name, isListItem=true }) {
     return (
@@ -7,8 +7,8 @@ function TemplateCard({ name, isListItem=true }) {
                 <p className='text-center text-slate-900 max-w-48 text-shadow-lg'>{name}</p>
             </div>
             {
-                isListItem ? <PrimaryButton className='w-28 mb-5 block'>Generate</PrimaryButton> :
-                    <PrimaryButton className='w-32 mb-5 block'>Create New</PrimaryButton>
+                isListItem ? <BlueButton className='w-28 mb-5 block'>Generate</BlueButton> :
+                    <BlueButton className='w-32 mb-5 block'>Create New</BlueButton>
             }
         </div>
     );

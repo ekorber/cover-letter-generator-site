@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import PrimaryButton from "../components/buttons/btn-primary";
-import { red500, red700, red900, purple600, purple700, purple800, purple950 } from '../colors';
+import BlueButton from "../components/buttons/btn-blue";
+import PurpleButton from "../components/buttons/btn-purple";
+import RedButton from "../components/buttons/btn-red";
 
 function ProfileSettingsPage() {
 
@@ -39,7 +40,7 @@ function ProfileSettingsPage() {
   return (
     <>
       <div className="m-5">
-        <Link to="/dashboard"><PrimaryButton className='mb-4 w-56'>Back to Dashboard</PrimaryButton></Link>  
+        <Link to="/dashboard"><BlueButton className='mb-4 w-56'>Back to Dashboard</BlueButton></Link>  
       </div>
       <div className="flex flex-col xl:flex-row xl:gap-10">
         <div className="w-full xl:flex-end max-w-xl p-5 mx-auto xl:ml-auto xl:mr-0">
@@ -85,14 +86,14 @@ function ProfileSettingsPage() {
             <p className="text-center text-sm mt-6">*You can safely change the default 'Email' setting without it 
             changing the email used to login. To change your login email, see the Account Management options.</p>
 
-            <PrimaryButton type="submit" className='mt-2'>Save Settings</PrimaryButton>
+            <BlueButton type="submit" className='mt-2'>Save Settings</BlueButton>
           </form>
         </div>
         <div className="flex flex-col gap-4 w-full max-w-xl p-5 mx-auto xl:mr-auto xl:ml-0">
           <h1 className="font-bold text-center text-2xl mt-12 xl:mt-0 mb-5 xl:mb-22">Account Management</h1>
-          <PrimaryButton fromColor={purple600} toColor={purple800} hoverFromColor={purple700} hoverToColor={purple950}>Change Account Email</PrimaryButton>
-          <PrimaryButton fromColor={purple600} toColor={purple800} hoverFromColor={purple700} hoverToColor={purple950}>Change Account Password</PrimaryButton>
-          <PrimaryButton fromColor={red500} toColor={red700} hoverFromColor={red700} hoverToColor={red900}>Delete Account</PrimaryButton>
+          <PurpleButton>Change Account Email</PurpleButton>
+          <PurpleButton>Change Account Password</PurpleButton>
+          <RedButton>Delete Account</RedButton>
         </div>
       </div>
     </>
