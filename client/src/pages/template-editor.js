@@ -71,8 +71,6 @@ function TemplateEditorPage() {
         )
       }));
     }
-
-    console.log(template)
   };
 
   function handleSubmit(e) {
