@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { v4 as uuidv4 } from 'uuid';
 import PrimaryButton from "../components/buttons/btn-primary";
+import { red500, red700, red900 } from '../colors';
 
 function TemplateEditorPage() {
 
@@ -10,10 +12,12 @@ function TemplateEditorPage() {
     tname: '',
     variables: [
       {
+        id: uuidv4(),
         varName: '',
         varValue: '',
       },
       {
+        id: uuidv4(),
         varName: '',
         varValue: '',
       },
@@ -21,37 +25,55 @@ function TemplateEditorPage() {
     body: '',
   })
 
-  function handleAddVariableInput() {
-    const newTemplate = {...template}
-    newTemplate.variables.push({
-      varName: '',
-      varValue: '',
-    })
-    setTemplate(newTemplate);
-  };
-
   function handleChange(e) {
     const { name, value } = e.target;
 
     setTemplate(prevState => ({
       ...prevState,
+      variables:[...prevState.variables],
       [name]: value,
     }))
   }
 
-  function handleVariableChange(e, index) {
-    const { name, value } = e.target;
-    const newTemplate = {...template}
+  function addVariableInput() {
+    setTemplate((prevState) => ({
+      ...prevState,
+      variables: [...prevState.variables, {
+        id: uuidv4(),
+        varName: '',
+        varValue: '',
+      }]
+    }));
+  };
 
-    if (name === 'varName') {
-      newTemplate.variables[index].varName = value
-    } else if (name === 'varValue') {
-      newTemplate.variables[index].varValue = value
-    }
-    
-    console.log(newTemplate)
-    setTemplate(newTemplate)
+  function removeVariableInput(id) {
+    setTemplate((prevState) => ({
+      ...prevState,
+      variables: prevState.variables.filter(variable => variable.id !== id)
+    }));
   }
+
+  function handleVariableChange(e, id) {
+    const { name, value } = e.target;
+    
+    if (name === 'varName') {
+      setTemplate((prevState) => ({
+        ...prevState,
+        variables: prevState.variables.map(variable =>
+          variable.id === id ? { ...variable, varName: value } : variable
+        )
+      }));
+    } else if (name === 'varValue') {
+      setTemplate((prevState) => ({
+        ...prevState,
+        variables: prevState.variables.map(variable =>
+          variable.id === id ? { ...variable, varValue: value } : variable
+        )
+      }));
+    }
+
+    console.log(template)
+  };
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -83,25 +105,26 @@ function TemplateEditorPage() {
                 value={template.tname}
                 onChange={handleChange} /></label>
             
-            {template.variables.map((variable, index) => (
-              <div key={index} className="flex gap-3">
+            {template.variables.map((item) => (
+              <div key={item.id} className="flex gap-3">
                 <input
                   required
                   type="text"
                   name="varName"
                   className="w-full p-2 border-2 border-slate-200 shadow-inner"
-                  value={variable.varName.value}
-                  onChange={(e) => handleVariableChange(e, index)}/>
+                  value={item.varName.value}
+                  onChange={(e) => handleVariableChange(e, item.id)}/>
                 <input
                   type="text"
                   name="varValue"
                   className="w-full p-2 border-2 border-slate-200 shadow-inner"
-                  value={variable.varValue.value}
-                  onChange={(e) => handleVariableChange(e, index)}/>
+                  value={item.varValue.value}
+                  onChange={(e) => handleVariableChange(e, item.id)}/>
+                <PrimaryButton onClick={() => removeVariableInput(item.id)} fromColor={red500} toColor={red700} hoverFromColor={red700} hoverToColor={red900} className='w-36'>X</PrimaryButton>
               </div>
             ))}
 
-            <PrimaryButton type="button" onClick={handleAddVariableInput}>+</PrimaryButton>
+            <PrimaryButton type="button" onClick={addVariableInput}>Add Variable</PrimaryButton>
               
             <label>Template Text <textarea
               required
