@@ -8,17 +8,32 @@ import { red500, red700, red900 } from '../colors';
 function TemplateEditorPage() {
 
   const [template, setTemplate] = useState({
-    id: '',
-    tname: '',
+    id: uuidv4(),
+    tname: 'My New Template',
     variables: [
       {
         id: uuidv4(),
-        varName: '',
+        varName: 'First Name',
         varValue: '',
       },
       {
         id: uuidv4(),
-        varName: '',
+        varName: 'Last Name',
+        varValue: '',
+      },
+      {
+        id: uuidv4(),
+        varName: 'Email',
+        varValue: '',
+      },
+      {
+        id: uuidv4(),
+        varName: 'Phone Number',
+        varValue: '',
+      },
+      {
+        id: uuidv4(),
+        varName: 'Website',
         varValue: '',
       },
     ],
@@ -35,13 +50,13 @@ function TemplateEditorPage() {
     }))
   }
 
-  function addVariableInput() {
+  function addVariableInput(name='', value='') {
     setTemplate((prevState) => ({
       ...prevState,
       variables: [...prevState.variables, {
         id: uuidv4(),
-        varName: '',
-        varValue: '',
+        varName: name,
+        varValue: value,
       }]
     }));
   };
@@ -110,13 +125,13 @@ function TemplateEditorPage() {
                   type="text"
                   name="varName"
                   className="w-full p-2 border-2 border-slate-200 shadow-inner"
-                  value={item.varName.value}
+                  value={item.varName}
                   onChange={(e) => handleVariableChange(e, item.id)}/>
                 <input
                   type="text"
                   name="varValue"
                   className="w-full p-2 border-2 border-slate-200 shadow-inner"
-                  value={item.varValue.value}
+                  value={item.varValue}
                   onChange={(e) => handleVariableChange(e, item.id)}/>
                 <PrimaryButton onClick={() => removeVariableInput(item.id)} fromColor={red500} toColor={red700} hoverFromColor={red700} hoverToColor={red900} className='w-36'>X</PrimaryButton>
               </div>
