@@ -1,9 +1,10 @@
 import { red500, red700, red900 } from "../../colors";
 import PrimaryButton from "./btn-primary";
 
-function RedButton({ onClick, type='button', className, children}) {
+function RedButton({ onClick, to, type='button', className, children}) {
   return (
     <PrimaryButton onClick={() => {if (onClick) {onClick()}}}
+            to={to}
             type={type}
             fromColor={red500} 
             toColor={red700} 

@@ -1,9 +1,10 @@
 import { green500, green700, green900 } from "../../colors";
 import PrimaryButton from "./btn-primary";
 
-function GreenButton({ onClick, type='button', className, children}) {
+function GreenButton({ onClick, to, type='button', className, children}) {
   return (
     <PrimaryButton onClick={() => {if (onClick) {onClick()}}}
+            to={to}
             type={type}
             fromColor={green500} 
             toColor={green700} 

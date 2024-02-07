@@ -1,9 +1,10 @@
 import { purple600, purple700, purple800, purple950 } from "../../colors";
 import PrimaryButton from "./btn-primary";
 
-function PurpleButton({ onClick, type='button', className, children}) {
+function PurpleButton({ onClick, to, type='button', className, children}) {
   return (
     <PrimaryButton onClick={() => {if (onClick) {onClick()}}}
+            to={to}
             type={type}
             fromColor={purple600}
             toColor={purple700}
