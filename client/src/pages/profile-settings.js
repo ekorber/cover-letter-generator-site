@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from 'axios';
 import BlueButton from "../components/buttons/btn-blue";
 import PurpleButton from "../components/buttons/btn-purple";
@@ -40,7 +39,7 @@ function ProfileSettingsPage() {
   return (
     <>
       <div className="m-5">
-        <Link to="/dashboard"><BlueButton className='mb-4 w-56'>Back to Dashboard</BlueButton></Link>  
+        <BlueButton to="/dashboard" className='mb-4 w-56'>Back to Dashboard</BlueButton>
       </div>
       <div className="flex flex-col xl:flex-row xl:gap-10">
         <div className="w-full xl:flex-end max-w-xl p-5 mx-auto xl:ml-auto xl:mr-0">

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import TrashIcon from "../components/svg/trash-icon";
@@ -120,7 +119,7 @@ Best Regards,
   return (
     <>
       <div className="m-5">
-        <Link to="/dashboard"><BlueButton className='mb-4 w-56'>Back to Dashboard</BlueButton></Link>  
+        <BlueButton to="/dashboard" className='mb-4 w-56'>Back to Dashboard</BlueButton>
       </div>
       <div className="w-full max-w-xl p-5 mx-auto">
           <h1 className="font-bold text-center text-2xl -mt-5 mb-10">Edit Template</h1>
