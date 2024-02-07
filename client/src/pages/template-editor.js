@@ -4,6 +4,7 @@ import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import PrimaryButton from "../components/buttons/btn-primary";
 import { red500, red700, red900, green500, green700, green900 } from '../colors';
+import TrashIcon from "../components/svg/trash-icon";
 
 function TemplateEditorPage() {
 
@@ -121,21 +122,22 @@ Best Regards,
         <Link to="/dashboard"><PrimaryButton className='mb-4 w-56'>Back to Dashboard</PrimaryButton></Link>  
       </div>
       <div className="w-full max-w-xl p-5 mx-auto">
-          <h1 className="font-bold text-center text-2xl mb-7">Edit Template</h1>
+          <h1 className="font-bold text-center text-2xl -mt-5 mb-10">Edit Template</h1>
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             
-            <label>Template Name (Job or Industry)<input
+            <label className="font-light">Template Name (Job or Industry)<input
                 required
                 type="text"
                 name="tname"
-                className="w-full mt-2 p-2 border-2 border-slate-200 shadow-inner"
+                className="w-full mt-3 p-2 font-normal border-2 border-slate-200 shadow-inner"
                 value={template.tname}
                 onChange={handleChange} /></label>
             
-            <div className="flex gap-3 mt-10">
-              <p className="text-center w-full font-bold pr-6">Variable Names</p>
-              <p className="text-center w-full font-bold pr-20">Default Values</p>
-            </div>
+            {template.variables.length > 0 ? <div className="flex gap-3 mt-8 -mb-1">
+              <p className="text-center w-full font-light pr-6">Variable Names</p>
+              <p className="text-center w-full font-light pr-20">Default Values</p>
+            </div> : <div className="mb-5"></div>}
+            
 
             {template.variables.map((item) => (
               <div key={item.id} className="flex gap-3">
@@ -144,32 +146,41 @@ Best Regards,
                   type="text"
                   name="varName"
                   className="w-full p-2 border-2 border-slate-200 shadow-inner"
+                  placeholder="(Required)"
                   value={item.varName}
                   onChange={(e) => handleVariableChange(e, item.id)}/>
                 <input
                   type="text"
                   name="varValue"
                   className="w-full p-2 border-2 border-slate-200 shadow-inner"
+                  placeholder="(Optional)"
                   value={item.varValue}
                   onChange={(e) => handleVariableChange(e, item.id)}/>
-                <PrimaryButton onClick={() => removeVariableInput(item.id)} fromColor={red500} toColor={red700} hoverFromColor={red700} hoverToColor={red900} className='w-36'>X</PrimaryButton>
+                <PrimaryButton  onClick={() => removeVariableInput(item.id)} 
+                                fromColor={red500}
+                                toColor={red700}
+                                hoverFromColor={red700}
+                                hoverToColor={red900}
+                                className='w-36'>
+                                  <TrashIcon className='mx-auto' width={27} height={27} />
+                                </PrimaryButton>
               </div>
             ))}
 
             <PrimaryButton className='mb-10' type="button" onClick={addVariableInput} fromColor={green500} toColor={green700} hoverFromColor={green700} hoverToColor={green900}>Add Variable</PrimaryButton>
 
-            <label>Template Text <textarea
+            <label className="font-light">Template Body <textarea
               required
               rows={10}
               type="text"
               name="body"
-              className="w-full mt-2 p-2 border-2 border-slate-200 shadow-inner"
+              className="w-full font-normal mt-3 p-2 border-2 border-slate-200 shadow-inner"
               value={template.body}
               onChange={handleChange} /></label>
 
-            <p className="text-center -mt-2 mb-10 font-semibold text-sm">Note: the variables [Current Date], [Company] and [Position] are available by default.</p>
+            <p className="text-center -mt-1 mb-10 underline decoration-dotted italic text-sm">The variables [Current Date], [Company] and [Position] are available by default.</p>
 
-            <PrimaryButton type="submit" className='mt-5'>Save Template</PrimaryButton>
+            <PrimaryButton type="submit" className='mt-5 mb-7'>Save Template</PrimaryButton>
           </form>
         </div>
     </>
