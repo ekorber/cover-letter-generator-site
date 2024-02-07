@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import PrimaryButton from "../components/buttons/btn-primary";
-import { red500, red700, red900 } from '../colors';
+import { red500, red700, red900, green500, green700, green900 } from '../colors';
 
 function TemplateEditorPage() {
 
   const [template, setTemplate] = useState({
     id: uuidv4(),
-    tname: 'My New Template',
+    tname: 'My New Template...',
     variables: [
       {
         id: uuidv4(),
@@ -37,7 +37,21 @@ function TemplateEditorPage() {
         varValue: '',
       },
     ],
-    body: '',
+    body: `[First Name] [Last Name]
+[Phone Number]
+[Email]
+[Website]
+
+[Current Date]
+  
+To whom it may concern,
+  
+I am pleased to be applying for the [Position] position at [Company]. My experience with ... seems to nicely match what you’re looking for from an applicant. Additionally, I have experience using ... and am very well familiar with ...
+  
+Thank you for taking the time to review my application. I’d love to have an opportunity to chat about the work being done at [Company] and about the people taking part in it. Feel free to reach out to me if you have any questions or would like to get in touch.
+    
+Best Regards,
+[First Name] [Last Name]`,
   })
 
   function handleChange(e) {
@@ -114,10 +128,15 @@ function TemplateEditorPage() {
                 required
                 type="text"
                 name="tname"
-                className="w-full p-2 border-2 border-slate-200 shadow-inner"
+                className="w-full mt-2 p-2 border-2 border-slate-200 shadow-inner"
                 value={template.tname}
                 onChange={handleChange} /></label>
             
+            <div className="flex gap-3 mt-10">
+              <p className="text-center w-full font-bold pr-6">Variable Names</p>
+              <p className="text-center w-full font-bold pr-20">Default Values</p>
+            </div>
+
             {template.variables.map((item) => (
               <div key={item.id} className="flex gap-3">
                 <input
@@ -137,18 +156,20 @@ function TemplateEditorPage() {
               </div>
             ))}
 
-            <PrimaryButton type="button" onClick={addVariableInput}>Add Variable</PrimaryButton>
-              
+            <PrimaryButton className='mb-10' type="button" onClick={addVariableInput} fromColor={green500} toColor={green700} hoverFromColor={green700} hoverToColor={green900}>Add Variable</PrimaryButton>
+
             <label>Template Text <textarea
               required
               rows={10}
               type="text"
               name="body"
-              className="w-full p-2 border-2 border-slate-200 shadow-inner"
+              className="w-full mt-2 p-2 border-2 border-slate-200 shadow-inner"
               value={template.body}
               onChange={handleChange} /></label>
 
-            <PrimaryButton type="submit" className='mt-2'>Save Template</PrimaryButton>
+            <p className="text-center -mt-2 mb-10 font-semibold text-sm">Note: the variables [Current Date], [Company] and [Position] are available by default.</p>
+
+            <PrimaryButton type="submit" className='mt-5'>Save Template</PrimaryButton>
           </form>
         </div>
     </>
