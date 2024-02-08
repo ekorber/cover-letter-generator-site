@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import TrashIcon from "../components/svg/trash-icon";
 import RedButton from "../components/buttons/btn-red";
 import BlueButton from "../components/buttons/btn-blue";
 import GreenButton from "../components/buttons/btn-green";
+import TemplateContext from '../contexts/TemplateContext';
 
 function TemplateEditorPage() {
 
@@ -54,6 +56,22 @@ Thank you for taking the time to review my application. I’d love to have an op
 Best Regards,
 [First Name] [Last Name]`,
   })
+
+  const navigate = useNavigate()
+  const { templateId } = useParams()
+  const { templates } = useContext(TemplateContext)
+
+  useEffect(() => {
+    if (templateId === 'new' || template.id === templateId) {
+      return
+    }
+
+    templates.forEach(element => {
+      if (element.id === templateId) {
+        setTemplate(element)
+      }
+    })
+  }, [])
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -107,9 +125,9 @@ Best Regards,
     e.preventDefault()
 
     //Server submission here
-    axios.post('/users/submit-template', template)
+    axios.post('/users/submit-template', {new: (templateId === 'new'), template})
     .then(function (response) {
-        console.log(response.data)
+        navigate('/dashboard')
     })
     .catch(function (error) {
         console.error(error);
@@ -119,7 +137,7 @@ Best Regards,
   return (
     <>
       <div className="m-5">
-        <BlueButton to="/dashboard" className='mb-4 w-56'>Back to Dashboard</BlueButton>
+        <BlueButton to="/dashboard" className='mb-4 w-56'>Exit Without Saving</BlueButton>
       </div>
       <div className="w-full max-w-xl p-5 mx-auto">
           <h1 className="font-bold text-center text-2xl -mt-5 mb-10">Edit Template</h1>

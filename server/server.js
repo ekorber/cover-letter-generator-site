@@ -236,7 +236,18 @@ app.post('/users/update-settings', (req, res) => {
 })
 
 app.post('/users/submit-template', (req, res) => {
-  console.log(req.body)
+  const submittedTemplate = req.body.template
+
+  if (req.body.new) {
+    templateList.push(submittedTemplate)
+  } else {
+    templateList.forEach((element, i) => {
+      if (element.id === submittedTemplate.id) {
+        templateList[i] = submittedTemplate
+      }
+    });
+  }
+
   res.sendStatus(200)
 })
 
