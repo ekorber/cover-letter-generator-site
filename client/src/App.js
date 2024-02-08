@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/template-editor" element={<TemplateEditorPage />} />
+          <Route path="/template-editor/:templateId" element={<TemplateEditorPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/profile" element={<ProfileSettingsPage />} />
