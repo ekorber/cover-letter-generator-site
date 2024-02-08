@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 import TemplateCard from "./template-card";
 import GridListLayout from "../layouts/grid-list";
+import TemplateContext from '../contexts/TemplateContext';
 
 function TemplateGrid() {
 
-    const [templates, setTemplates] = useState([]);
+    const { templates, setTemplates } = useContext(TemplateContext)
 
     useEffect(() => {
         axios.post('/users/templates', {
