@@ -13,15 +13,13 @@ function PrimaryButton({onClick, to='', type='button', fromColor, toColor, hover
   return (
     <>
       {to ? 
-          <Link to={to}>
-            <Button onClick={() => {if (onClick) {onClick()}}}
-              type={type}
-              fromColor={fromColor} 
-              toColor={toColor} 
-              hoverFromColor={hoverFromColor}
-              hoverToColor={hoverToColor}
-              className={`h-16 rounded-lg text-slate-100 font-medium shadow-lg ${className}`}>{children}</Button>
-          </Link>
+        <Button onClick={() => {if (onClick) {onClick()}}}
+          type={type}
+          fromColor={fromColor} 
+          toColor={toColor} 
+          hoverFromColor={hoverFromColor}
+          hoverToColor={hoverToColor}
+          className={`h-16 rounded-lg text-slate-100 font-medium shadow-lg ${className}`}><Link to={to}>{children}</Link></Button>
         :
         <Button onClick={() => {if (onClick) {onClick()}}}
               type={type}
