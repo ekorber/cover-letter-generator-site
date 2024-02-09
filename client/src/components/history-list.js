@@ -7,7 +7,7 @@ function HistoryList() {
     const [coverLetterHistory, setCoverLetterHistory] = useState([]);
 
     useEffect(() => {
-        axios.post('/users/generated-docs-history', {
+        axios.post('/user/history/cover-letters', {
             userId: 1,
         })
         .then(function (response) {

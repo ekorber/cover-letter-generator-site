@@ -231,8 +231,13 @@ const userData = {
 }
 
 // Route to return a user's historical document generation information
-app.post('/users/generated-docs-history', (req, res) => {
+app.post('/user/history/cover-letters', (req, res) => {
   res.json(documentGenerationHistory);
+});
+
+// Route to delete a cover letter from a user's history
+app.post('/user/history/cover-letters/delete', (req, res) => {
+  res.sendStatus(200);
 });
 
 // Route to return a user's account data
@@ -247,7 +252,7 @@ app.post('/users/update-settings', (req, res) => {
   res.json(userData)
 })
 
-// Route to return a user's template information
+// Route to return a user's template list information
 app.post('/users/templates', (req, res) => {
   res.json(templateList);
 });
