@@ -248,7 +248,6 @@ app.post('/user/profile', (req, res) => {
 // Route to submit changes to a user's account
 app.post('/user/profile/update', (req, res) => {
   userData.defaultSettings = req.body
-  console.log(userData)
   res.json(userData)
 })
 
