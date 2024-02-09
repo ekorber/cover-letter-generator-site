@@ -19,6 +19,8 @@ const Content = styled.div`
     border-radius: 4px;
     position: relative;
     z-index: 1001;
+    max-width: 90dvw;
+    max-height: 90dvh;
 `;
 
 const CloseButton = styled.button`
@@ -37,7 +39,7 @@ function Modal({ isOpen, onClose, defaultCloseButton=true, children }) {
     if (isOpen) {
         return (
             <Background className="modal-background" onClick={onClose}>
-                <Content className="modal-content" onClick={e => e.stopPropagation()}>
+                <Content className="modal-content overflow-auto" onClick={e => e.stopPropagation()}>
                     {
                         defaultCloseButton && <CloseButton className="close-button" onClick={onClose}>&times;</CloseButton>
                     }
