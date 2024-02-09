@@ -251,6 +251,18 @@ app.post('/users/submit-template', (req, res) => {
   res.sendStatus(200)
 })
 
+app.post('/users/delete-template', (req, res) => {
+  const id = req.body.id
+
+  templateList.forEach((element, i) => {
+    if (element.id === id) {
+      templateList.splice(i, 1)
+    }
+  });
+  
+  res.sendStatus(200)
+})
+
 // Handle React routing, return all requests to React app
 // app.get('*', function(req, res) {
 //   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
