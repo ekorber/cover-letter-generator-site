@@ -231,33 +231,33 @@ const userData = {
 }
 
 // Route to return a user's historical document generation information
-app.post('/user/history/cover-letters', (req, res) => {
+app.post('/api/user/history/cover-letters', (req, res) => {
   res.json(documentGenerationHistory);
 });
 
 // Route to delete a cover letter from a user's history
-app.post('/user/history/cover-letters/delete', (req, res) => {
+app.post('/api/user/history/cover-letters/delete', (req, res) => {
   res.sendStatus(200);
 });
 
 // Route to return a user's account data
-app.post('/user/profile', (req, res) => {
+app.post('/api/user/profile', (req, res) => {
   res.json(userData)
 })
 
 // Route to submit changes to a user's account
-app.post('/user/profile/update', (req, res) => {
+app.post('/api/user/profile/update', (req, res) => {
   userData.defaultSettings = req.body
   res.json(userData)
 })
 
 // Route to return a user's template list information
-app.post('/user/template/list', (req, res) => {
+app.post('/api/user/templates', (req, res) => {
   res.json(templateList);
 });
 
 // Route to submit either a new or edited template
-app.post('/user/template/submit', (req, res) => {
+app.post('/api/user/templates/submit', (req, res) => {
   const submittedTemplate = req.body.template
 
   if (req.body.new) {
@@ -274,7 +274,7 @@ app.post('/user/template/submit', (req, res) => {
 })
 
 // Route to delete a template
-app.post('/user/template/delete', (req, res) => {
+app.post('/api/user/templates/delete', (req, res) => {
   const id = req.body.id
 
   templateList.forEach((element, i) => {

@@ -6,6 +6,7 @@ import RedButton from "./buttons/btn-red"
 import EditIcon from "./svg/edit-icon";
 import TrashIcon from "./svg/trash-icon";
 import TemplateContext from "../contexts/TemplateContext";
+import { API_USER_TEMPLATES_DELETE } from "../apiRoutes";
 
 function TemplateCard({ id, name, isListItem=true }) {
 
@@ -13,7 +14,7 @@ function TemplateCard({ id, name, isListItem=true }) {
 
     function handleDeletion(id) {
         //Server submission here
-        axios.post('/user/template/delete', {id})
+        axios.post(API_USER_TEMPLATES_DELETE, {id})
         .then(function (response) {
             setTemplates((prevState) => prevState.filter(element => element.id !== id));
         })

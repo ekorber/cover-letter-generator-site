@@ -4,6 +4,7 @@ import BlueButton from "../components/buttons/btn-blue";
 import PurpleButton from "../components/buttons/btn-purple";
 import RedButton from "../components/buttons/btn-red";
 import UserContext from "../contexts/UserContext";
+import { API_USER_PROFILE_UPDATE } from "../apiRoutes";
 
 function ProfileSettingsPage() {
 
@@ -34,7 +35,7 @@ function ProfileSettingsPage() {
     e.preventDefault()
 
     //Server submission here
-    axios.post('/user/profile/update', profile)
+    axios.post(API_USER_PROFILE_UPDATE, profile)
     .then(function (response) {
       //Update context upon successful submission
       setUserData(response.data)

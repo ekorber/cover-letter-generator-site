@@ -3,13 +3,14 @@ import axios from 'axios';
 import TemplateCard from "./template-card";
 import GridListLayout from "../layouts/grid-list";
 import TemplateContext from '../contexts/TemplateContext';
+import { API_USER_TEMPLATES } from '../apiRoutes';
 
 function TemplateGrid() {
 
     const { templates, setTemplates } = useContext(TemplateContext)
 
     useEffect(() => {
-        axios.post('/user/template/list')
+        axios.post(API_USER_TEMPLATES)
         .then(function (response) {
             setTemplates(response.data)
         })

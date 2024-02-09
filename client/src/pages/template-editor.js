@@ -8,6 +8,7 @@ import BlueButton from "../components/buttons/btn-blue";
 import GreenButton from "../components/buttons/btn-green";
 import TemplateContext from '../contexts/TemplateContext';
 import UserContext from "../contexts/UserContext";
+import { API_USER_TEMPLATES_SUBMIT } from "../apiRoutes";
 
 function TemplateEditorPage() {
 
@@ -160,7 +161,7 @@ Best Regards,
     e.preventDefault()
 
     //Server submission here
-    axios.post('/user/template/submit', {new: (templateId === 'new'), template})
+    axios.post(API_USER_TEMPLATES_SUBMIT, {new: (templateId === 'new'), template})
     .then(function (response) {
         navigate('/dashboard')
     })

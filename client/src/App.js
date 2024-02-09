@@ -10,6 +10,7 @@ import TemplateEditorPage from './pages/template-editor';
 import TemplateContext from './contexts/TemplateContext';
 import UserContext, { defaultUserData } from './contexts/UserContext';
 import axios from 'axios';
+import { API_USER_PROFILE } from './apiRoutes';
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
   const [userData, setUserData] = useState(defaultUserData);
 
   useEffect(() => {
-    axios.post('/user/profile')
+    axios.post(API_USER_PROFILE)
     .then(function(response) {
       setUserData(response.data)
     })

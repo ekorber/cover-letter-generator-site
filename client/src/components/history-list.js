@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import HistoryListItem from "./history-list-item";
+import { API_USER_HISTORY_COVER_LETTERS } from '../apiRoutes';
 
 function HistoryList() {
 
     const [coverLetterHistory, setCoverLetterHistory] = useState([]);
 
     useEffect(() => {
-        axios.post('/user/history/cover-letters', {
+        axios.post(API_USER_HISTORY_COVER_LETTERS, {
             userId: 1,
         })
         .then(function (response) {
