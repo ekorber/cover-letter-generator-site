@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from 'axios';
 import BlueButton from "../components/buttons/btn-blue";
 import PurpleButton from "../components/buttons/btn-purple";
 import RedButton from "../components/buttons/btn-red";
+import UserContext from "../contexts/UserContext";
 
 function ProfileSettingsPage() {
 
+  const { userData, setUserData } = useContext(UserContext)
   const [profile, setProfile] = useState({
     fname: '',
     lname: '',
@@ -13,6 +15,11 @@ function ProfileSettingsPage() {
     phoneNumber: '',
     website: '',
   })
+
+  useEffect(() => {
+    // Load in user data at start
+    setProfile(userData.defaultSettings)
+  }, [])
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -29,10 +36,11 @@ function ProfileSettingsPage() {
     //Server submission here
     axios.post('/users/update-settings', profile)
     .then(function (response) {
-        console.log(response.data)
+      //Update context upon successful submission
+      setUserData(response.data)
     })
     .catch(function (error) {
-        console.error(error);
+      console.error(error);
     });
   }
 

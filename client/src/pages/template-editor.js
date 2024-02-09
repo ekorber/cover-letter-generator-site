@@ -7,6 +7,7 @@ import RedButton from "../components/buttons/btn-red";
 import BlueButton from "../components/buttons/btn-blue";
 import GreenButton from "../components/buttons/btn-green";
 import TemplateContext from '../contexts/TemplateContext';
+import UserContext from "../contexts/UserContext";
 
 function TemplateEditorPage() {
 
@@ -60,9 +61,43 @@ Best Regards,
   const navigate = useNavigate()
   const { templateId } = useParams()
   const { templates } = useContext(TemplateContext)
+  const { userData } = useContext(UserContext)
 
   useEffect(() => {
-    if (templateId === 'new' || template.id === templateId) {
+
+    if (template.id === templateId) {
+      return
+    }
+
+    if (templateId === 'new') {
+
+      // Load in user data
+      setTemplate(prevState => ({
+        ...prevState,
+        variables: [
+          {
+            ...prevState.variables[0],
+            varValue: userData.defaultSettings.fname,
+          },
+          {
+            ...prevState.variables[1],
+            varValue: userData.defaultSettings.lname,
+          },
+          {
+            ...prevState.variables[2],
+            varValue: userData.defaultSettings.email,
+          },
+          {
+            ...prevState.variables[3],
+            varValue: userData.defaultSettings.phoneNumber,
+          },
+          {
+            ...prevState.variables[4],
+            varValue: userData.defaultSettings.website,
+          },
+        ]
+      }))
+
       return
     }
 
