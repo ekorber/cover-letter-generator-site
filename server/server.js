@@ -220,21 +220,39 @@ const documentGenerationHistory = [
   },
 ];
 
-// Route to return a user's template information
-app.post('/users/templates', (req, res) => {
-  res.json(templateList);
-});
+const userData = {
+  defaultSettings: {
+    fname: 'Eric',
+    lname: 'Korrrber',
+    email: '',
+    phoneNumber: '',
+    website: '',
+  },
+}
 
 // Route to return a user's historical document generation information
 app.post('/users/generated-docs-history', (req, res) => {
   res.json(documentGenerationHistory);
 });
 
-app.post('/users/update-settings', (req, res) => {
-  console.log(req.body)
-  res.sendStatus(200)
+// Route to return a user's account data
+app.post('/users/user-settings', (req, res) => {
+  res.json(userData)
 })
 
+// Route to submit changes to a user's account
+app.post('/users/update-settings', (req, res) => {
+  userData.defaultSettings = req.body
+  console.log(userData)
+  res.json(userData)
+})
+
+// Route to return a user's template information
+app.post('/users/templates', (req, res) => {
+  res.json(templateList);
+});
+
+// Route to submit either a new or edited template
 app.post('/users/submit-template', (req, res) => {
   const submittedTemplate = req.body.template
 
@@ -251,6 +269,7 @@ app.post('/users/submit-template', (req, res) => {
   res.sendStatus(200)
 })
 
+// Route to delete a template
 app.post('/users/delete-template', (req, res) => {
   const id = req.body.id
 
