@@ -34,7 +34,7 @@ function ProfileSettingsPage() {
     e.preventDefault()
 
     //Server submission here
-    axios.post('/users/update-settings', profile)
+    axios.post('/user/profile/update', profile)
     .then(function (response) {
       //Update context upon successful submission
       setUserData(response.data)

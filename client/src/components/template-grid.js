@@ -9,9 +9,7 @@ function TemplateGrid() {
     const { templates, setTemplates } = useContext(TemplateContext)
 
     useEffect(() => {
-        axios.post('/users/templates', {
-            userId: 1,
-        })
+        axios.post('/user/template/list')
         .then(function (response) {
             setTemplates(response.data)
         })

@@ -13,7 +13,7 @@ function TemplateCard({ id, name, isListItem=true }) {
 
     function handleDeletion(id) {
         //Server submission here
-        axios.post('/users/delete-template', {id})
+        axios.post('/user/template/delete', {id})
         .then(function (response) {
             setTemplates((prevState) => prevState.filter(element => element.id !== id));
         })

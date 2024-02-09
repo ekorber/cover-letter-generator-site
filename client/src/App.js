@@ -17,12 +17,12 @@ function App() {
   const [userData, setUserData] = useState(defaultUserData);
 
   useEffect(() => {
-    axios.post('/users/user-settings')
+    axios.post('/user/profile')
     .then(function(response) {
       setUserData(response.data)
     })
     .catch(function(error) {
-      // Error handling goes here...
+      console.error(error);
     })
   }, [])
 

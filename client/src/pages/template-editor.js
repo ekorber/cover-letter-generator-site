@@ -160,7 +160,7 @@ Best Regards,
     e.preventDefault()
 
     //Server submission here
-    axios.post('/users/submit-template', {new: (templateId === 'new'), template})
+    axios.post('/user/template/submit', {new: (templateId === 'new'), template})
     .then(function (response) {
         navigate('/dashboard')
     })
