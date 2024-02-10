@@ -33,13 +33,13 @@ const CloseButton = styled.button`
     cursor: pointer;
 `;
 
-function Modal({ isOpen, onClose, defaultCloseButton=true, children }) {
+function Modal({ isOpen, onClose, defaultCloseButton=true, children, className }) {
 
     // Only show content when modal is open
     if (isOpen) {
         return (
             <Background className="modal-background" onClick={onClose}>
-                <Content className="modal-content overflow-auto" onClick={e => e.stopPropagation()}>
+                <Content className={`modal-content overflow-auto ${className}`} onClick={e => e.stopPropagation()}>
                     {
                         defaultCloseButton && <CloseButton className="close-button" onClick={onClose}>&times;</CloseButton>
                     }
