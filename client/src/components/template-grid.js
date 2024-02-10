@@ -22,10 +22,10 @@ function TemplateGrid() {
     return (
         <div className='p-5 h-full bg-gradient-to-b from-blue-600 overscroll-contain'>
             <GridListLayout gap={40} className='p-8'>
-                <TemplateCard name={'New Template!'} isListItem={false} />
+                <TemplateCard isListItem={false} />
 
                 {templates.map(template => (
-                    <TemplateCard key={template.id} id={template.id} name={template.tname} />
+                    <TemplateCard key={template.id} template={template} />
                 ))}
             </GridListLayout>
         </div>
