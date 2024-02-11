@@ -29,7 +29,6 @@ function Tooltip({ children, message }) {
     <TooltipContainer 
         onMouseEnter={() => {console.log('Enter'); setShow(true)}}
         onMouseLeave={() => {console.log('Exit'); setShow(false)}}
-        style={{ position: 'relative', display: 'inline-block' }}
     >
         {children}
         {show && <TooltipMessage>{message}</TooltipMessage>}
