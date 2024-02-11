@@ -1,14 +1,14 @@
 import { UserContextProvider } from "./UserContext";
 import { TemplateContextProvider } from "./TemplateContext";
-import CoverLetterHistoryContext from "./CoverLetterHistoryContext";
+import { CoverLetterHistoryContextProvider } from "./CoverLetterHistoryContext";
 
 function MultiContextProvider({ children }) {
     return (  
         <UserContextProvider>
             <TemplateContextProvider>
-                <CoverLetterHistoryContext>
+                <CoverLetterHistoryContextProvider>
                     {children}
-                </CoverLetterHistoryContext>
+                </CoverLetterHistoryContextProvider>
             </TemplateContextProvider>
         </UserContextProvider>
     );
