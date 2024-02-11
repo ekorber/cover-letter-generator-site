@@ -4,14 +4,11 @@ import TrashIcon from "./svg/trash-icon";
 import { API_USER_HISTORY_COVER_LETTERS_DELETE } from "../apiRoutes";
 import { useContext } from "react";
 import CoverLetterHistoryContext from "../contexts/CoverLetterHistoryContext";
+import { generateWordDocument } from "../utils/doc-generator";
 
 function HistoryListItem({ coverLetterData, className }) {
 
-    const { coverLetterHistory, setCoverLetterHistory } = useContext(CoverLetterHistoryContext)
-
-    function recreateFile() {
-
-    }
+    const { setCoverLetterHistory } = useContext(CoverLetterHistoryContext)
 
     function deleteFromHistory() {
         axios.post(API_USER_HISTORY_COVER_LETTERS_DELETE, {id: coverLetterData.id})
@@ -31,7 +28,8 @@ function HistoryListItem({ coverLetterData, className }) {
                 <p className="text-xs mt-2">{coverLetterData.dateCreated}</p>
             </div>
             <div className="flex-initial w-1/6 relative">
-                <button onClick={recreateFile} className="w-7 h-7 bg-transparent absolute -right-1 rounded-lg hover:bg-emerald-600 hover:text-slate-100">
+                <button onClick={() => generateWordDocument(coverLetterData.body, `Cover Letter - ${coverLetterData.company} - ${coverLetterData.position}.docx`)} 
+                    className="w-7 h-7 bg-transparent absolute -right-1 rounded-lg hover:bg-emerald-600 hover:text-slate-100">
                     <DownloadIcon className='ml-1' />
                 </button>
                 <button onClick={deleteFromHistory} className="w-7 h-7 bg-transparent absolute -right-1 mt-9 rounded-lg hover:bg-emerald-600 hover:text-slate-100">
