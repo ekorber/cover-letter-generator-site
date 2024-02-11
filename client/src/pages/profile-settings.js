@@ -5,9 +5,11 @@ import PurpleButton from "../components/buttons/btn-purple";
 import RedButton from "../components/buttons/btn-red";
 import UserContext from "../contexts/UserContext";
 import { API_USER_PROFILE_UPDATE } from "../apiRoutes";
+import Toast from "../components/toast";
 
 function ProfileSettingsPage() {
 
+  const [isToastVisible, setToastVisible] = useState(false);
   const { userData, setUserData } = useContext(UserContext)
   const [profile, setProfile] = useState({
     fname: '',
@@ -39,6 +41,7 @@ function ProfileSettingsPage() {
     .then(function (response) {
       //Update context upon successful submission
       setUserData(response.data)
+      setToastVisible(true)
     })
     .catch(function (error) {
       console.error(error);
@@ -94,6 +97,7 @@ function ProfileSettingsPage() {
             <p className="text-center text-sm mt-6">*You can safely change the default 'Email' setting without it 
             changing the email used to login. To change your login email, see the Account Management options.</p>
 
+            <Toast message='Updates Saved Successfully' isVisible={isToastVisible} onClose={() => setToastVisible(false)} theme="success" />
             <BlueButton type="submit" className='mt-2'>Save Settings</BlueButton>
           </form>
         </div>
