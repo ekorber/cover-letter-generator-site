@@ -96,7 +96,7 @@ function GenerateCoverLetterForm({ template, closeModal }) {
 
     return (
         <>
-            <p className="p-3">Generate Cover Letter for "{template.tname}"</p>
+            <p className="mb-5">Generate Cover Letter for "{template.tname}"</p>
 
             <form onSubmit={handleSubmission}>
                 {inputValues.map((item) => (
@@ -109,8 +109,10 @@ function GenerateCoverLetterForm({ template, closeModal }) {
                         onChange={(e) => handleChange(e, item.id)}
                         /></label>
                 ))}
-                <BlueButton type="submit" className='w-60 mr-5'>Save & Download</BlueButton>
-                <RedButton onClick={cancelSubmission} className='w-60'>Cancel</RedButton>
+                <div className="flex flex-col md:flex-row gap-5">
+                    <BlueButton type="submit" className='w-full md:max-w-60'>Save & Download</BlueButton>
+                    <RedButton onClick={cancelSubmission} className='w-full md:max-w-60'>Cancel</RedButton>
+                </div>
             </form>
         </>
     );
