@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Document, Packer, Paragraph, TextRun } from 'docx';
 import { v4 as uuidv4 } from 'uuid';
 import { saveAs } from 'file-saver';
+import axios from 'axios'
 import BlueButton from "./buttons/btn-blue"
 import RedButton from "./buttons/btn-red"
+import { API_USER_HISTORY_COVER_LETTERS_SUBMIT } from "../apiRoutes";
+import CoverLetterHistoryContext from "../contexts/CoverLetterHistoryContext";
 
 function GenerateCoverLetterForm({ template, closeModal }) {
 
@@ -19,6 +22,8 @@ function GenerateCoverLetterForm({ template, closeModal }) {
             varValue: '',
         },
     ])
+
+    const { coverLetterHistory, setCoverLetterHistory } = useContext(CoverLetterHistoryContext)
 
     useEffect(() => {
         const newValues = [...inputValues, ...template.variables]
@@ -65,7 +70,8 @@ function GenerateCoverLetterForm({ template, closeModal }) {
         }
 
         //Replace standard placeholders
-        coverLetterBody = coverLetterBody.replace('[Current Date]', `${formattedMonth} ${day}, ${year}`)
+        const currentDate = `${formattedMonth} ${day}, ${year}`
+        coverLetterBody = coverLetterBody.replace('[Current Date]', currentDate)
 
         //Replace variable placeholders with their respective values
         inputValues.forEach(element => {
@@ -114,6 +120,24 @@ function GenerateCoverLetterForm({ template, closeModal }) {
         Packer.toBlob(doc).then(blob => {
             // Save the document using FileSaver
             saveAs(blob, `Cover Letter - ${company} - ${position}.docx`);
+        });
+
+        // Create history object for submission
+        const historyObject = {
+            id: uuidv4(),
+            position: position,
+            company: company,
+            dateCreated: currentDate,
+            body: coverLetterBody,
+        }
+
+        //Server submission
+        axios.post(API_USER_HISTORY_COVER_LETTERS_SUBMIT, historyObject)
+        .then(function (response) {
+            setCoverLetterHistory([...coverLetterHistory, historyObject])
+        })
+        .catch(function (error) {
+            console.error(error);
         });
         
         closeModal()
