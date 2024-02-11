@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react"
-import { Document, Packer, Paragraph, TextRun } from 'docx';
 import { v4 as uuidv4 } from 'uuid';
-import { saveAs } from 'file-saver';
 import axios from 'axios'
 import BlueButton from "./buttons/btn-blue"
 import RedButton from "./buttons/btn-red"
 import { API_USER_HISTORY_COVER_LETTERS_SUBMIT } from "../apiRoutes";
 import CoverLetterHistoryContext from "../contexts/CoverLetterHistoryContext";
+import { getFormattedCurrentDate } from "../utils/format-date";
+import { generateWordDocument } from "../utils/doc-generator";
 
 function GenerateCoverLetterForm({ template, closeModal }) {
 
@@ -47,33 +47,11 @@ function GenerateCoverLetterForm({ template, closeModal }) {
         let position = ''
         let company = ''
 
-        // Get formatted date
-        const now = new Date()
-        const year = now.getFullYear()
-        const month = now.getMonth()
-        const day = now.getDate()
-        let formattedMonth = ''
-
-        switch (month) {
-            case 0: formattedMonth = 'January'; break;
-            case 1: formattedMonth = 'February'; break;
-            case 2: formattedMonth = 'March'; break;
-            case 3: formattedMonth = 'April'; break;
-            case 4: formattedMonth = 'May'; break;
-            case 5: formattedMonth = 'June'; break;
-            case 6: formattedMonth = 'July'; break;
-            case 7: formattedMonth = 'August'; break;
-            case 8: formattedMonth = 'September'; break;
-            case 9: formattedMonth = 'October'; break;
-            case 10: formattedMonth = 'November'; break;
-            case 11: formattedMonth = 'December'; break;
-        }
-
-        //Replace standard placeholders
-        const currentDate = `${formattedMonth} ${day}, ${year}`
+        // Replace Current Date placeholder
+        const currentDate = getFormattedCurrentDate()
         coverLetterBody = coverLetterBody.replace('[Current Date]', currentDate)
 
-        //Replace variable placeholders with their respective values
+        // Replace variable placeholders with their respective values
         inputValues.forEach(element => {
 
             if (element.varName === 'Company') {
@@ -89,38 +67,7 @@ function GenerateCoverLetterForm({ template, closeModal }) {
             coverLetterBody = coverLetterBody.replace(regex, element.varValue)
         })
 
-        // Seperate template body into paragraph parts
-        const parts = coverLetterBody.split(/\r?\n/)
-
-        // Create Paragraph objects, containing the previous parts
-        const paragraphs = []
-        parts.forEach(element => {
-            paragraphs.push(
-                new Paragraph({
-                    children: [
-                        new TextRun({
-                            text: element.trim(),
-                            size: "12pt",
-                        }),
-                    ]
-                })
-            )
-        });
-
-        // Create the Word document object, and place the paragraph objects inside
-        const doc = new Document({
-            sections: [{
-            children: [
-                ...paragraphs,
-            ],
-            }],
-        });
-        
-        // Generate the actual Word document
-        Packer.toBlob(doc).then(blob => {
-            // Save the document using FileSaver
-            saveAs(blob, `Cover Letter - ${company} - ${position}.docx`);
-        });
+        generateWordDocument(coverLetterBody, `Cover Letter - ${company} - ${position}.docx`)
 
         // Create history object for submission
         const historyObject = {
@@ -131,7 +78,7 @@ function GenerateCoverLetterForm({ template, closeModal }) {
             body: coverLetterBody,
         }
 
-        //Server submission
+        // Server submission
         axios.post(API_USER_HISTORY_COVER_LETTERS_SUBMIT, historyObject)
         .then(function (response) {
             setCoverLetterHistory([...coverLetterHistory, historyObject])
