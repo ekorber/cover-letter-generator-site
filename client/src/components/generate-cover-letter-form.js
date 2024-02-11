@@ -40,8 +40,7 @@ function GenerateCoverLetterForm({ template, closeModal }) {
         ))
     }
 
-    function handleSubmission(e) {
-        e.preventDefault()
+    function handleSubmission(submissionType) {
 
         let coverLetterBody = template.body
         let position = ''
@@ -67,7 +66,9 @@ function GenerateCoverLetterForm({ template, closeModal }) {
             coverLetterBody = coverLetterBody.replace(regex, element.varValue)
         })
 
-        generateWordDocument(coverLetterBody, `Cover Letter - ${company} - ${position}.docx`)
+        //Only download if the proper submit button is pressed
+        if (submissionType === 'save-and-download')
+            generateWordDocument(coverLetterBody, `Cover Letter - ${company} - ${position}.docx`)
 
         // Create history object for submission
         const historyObject = {
@@ -98,7 +99,7 @@ function GenerateCoverLetterForm({ template, closeModal }) {
         <>
             <p className="mb-5">Generate Cover Letter for "{template.tname}"</p>
 
-            <form onSubmit={handleSubmission}>
+            <form>
                 {inputValues.map((item) => (
                     <label className="font-light">{item.varName}<input
                         required
@@ -110,7 +111,8 @@ function GenerateCoverLetterForm({ template, closeModal }) {
                         /></label>
                 ))}
                 <div className="flex flex-col md:flex-row gap-5">
-                    <BlueButton type="submit" className='w-full md:max-w-60'>Save & Download</BlueButton>
+                    <BlueButton onClick={() => handleSubmission('save-and-download')} className='w-full md:max-w-60'>Save & Download</BlueButton>
+                    <BlueButton onClick={() => handleSubmission('save-no-download')} className='w-full md:max-w-60'>Save Without Downloading</BlueButton>
                     <RedButton onClick={cancelSubmission} className='w-full md:max-w-60'>Cancel</RedButton>
                 </div>
             </form>
