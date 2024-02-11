@@ -5,8 +5,9 @@ const ToastContainer = styled.div`
   position: fixed;
   bottom: 20px;
   right: 20px;
-  padding: 30px 40px;
+  padding: 32px 42px;
   color: #fff;
+  box-shadow: 0 5px 10px -5px rgb(0 0 0 / 0.15), 0 5px 10px 5px rgb(0 0 0 / 0.15);
   border-radius: 5px;
   z-index: 1000;
 `;
@@ -29,19 +30,19 @@ const Toast = ({ message, isVisible, onClose, showCloseButton=false, theme='' })
   }, [isVisible, onClose])
 
   //Set background color
-  let backgroundColor = ''
+  let background = ''
   
   if (theme === 'success') {
-    backgroundColor = 'bg-green-600'
+    background = 'bg-gradient-to-b from-green-500 to-green-700 border-green-700'
   } else {
-    backgroundColor = 'bg-black'
+    background = 'bg-gradient-to-b from-slate-800 to-black border-black'
   }
 
   // Render based on visibility
   if (isVisible) {
     return (
-        <ToastContainer className={backgroundColor}>
-          {message}
+        <ToastContainer className={background}>
+          <p>{message}</p>
           {showCloseButton && <CloseButton onClick={onClose}>X</CloseButton>}
         </ToastContainer>
       )
