@@ -97,23 +97,23 @@ function GenerateCoverLetterForm({ template, closeModal }) {
 
     return (
         <>
-            <p className="mb-5">Generate Cover Letter for "{template.tname}"</p>
+            <p className="mb-10 font-semibold">Generate Cover Letter for "{template.tname}"</p>
 
-            <form>
+            <form className="w-full lg:max-w-4xl">
                 {inputValues.map((item) => (
                     <label className="font-light">{item.varName}<input
                         required
                         type="text"
-                        className="w-full mt-1 mb-5 p-2 font-normal border-2 border-slate-200 shadow-inner"
+                        className="w-full lg:max-w-4xl mt-1 mb-5 p-2 font-normal border-2 border-blue-200 shadow-inner"
                         name={item.varName}
                         value={item.varValue}
                         onChange={(e) => handleChange(e, item.id)}
                         /></label>
                 ))}
-                <div className="flex flex-col md:flex-row gap-5">
-                    <BlueButton onClick={() => handleSubmission('save-and-download')} className='w-full md:max-w-60'>Save & Download</BlueButton>
-                    <BlueButton onClick={() => handleSubmission('save-no-download')} className='w-full md:max-w-60'>Save Without Downloading</BlueButton>
-                    <RedButton onClick={cancelSubmission} className='w-full md:max-w-60'>Cancel</RedButton>
+                <div className="flex flex-col lg:flex-row gap-4 lg:mt-5">
+                    <BlueButton onClick={() => handleSubmission('save-and-download')} className='w-full'>Save & Download</BlueButton>
+                    <BlueButton onClick={() => handleSubmission('save-no-download')} className='w-full'>Save Without Downloading</BlueButton>
+                    <RedButton onClick={cancelSubmission} className='w-full'>Cancel</RedButton>
                 </div>
             </form>
         </>
