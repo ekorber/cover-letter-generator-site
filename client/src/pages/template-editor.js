@@ -162,6 +162,19 @@ Best Regards,
   function handleSubmit(e) {
     e.preventDefault()
 
+    for (var i = 0; i < template.variables.length; i++) {
+      for (var j = 0; j < template.variables.length; j++) {
+        if (i === j) {
+          continue
+        } else if (template.variables[i].varName === template.variables[j].varName) {
+          setToastMessage(`Error: There are multiple variables named \"${template.variables[i].varName}\". All variables must have different names.`)
+          setToastTheme('danger')
+          setToastVisible(true)
+          return
+        }
+      } 
+    }
+
     //Server submission here
     axios.post(API_USER_TEMPLATES_SUBMIT, {new: (templateId === 'new'), template})
     .then(function (response) {
