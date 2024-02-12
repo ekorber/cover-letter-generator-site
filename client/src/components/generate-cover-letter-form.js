@@ -7,6 +7,7 @@ import { API_USER_HISTORY_COVER_LETTERS_SUBMIT } from "../apiRoutes";
 import CoverLetterHistoryContext from "../contexts/CoverLetterHistoryContext";
 import { getFormattedCurrentDate } from "../utils/format-date";
 import { generateWordDocument } from "../utils/doc-generator";
+import ToastContext from "../contexts/ToastContext";
 
 function GenerateCoverLetterForm({ template, closeModal }) {
 
@@ -24,6 +25,7 @@ function GenerateCoverLetterForm({ template, closeModal }) {
     ])
 
     const { coverLetterHistory, setCoverLetterHistory } = useContext(CoverLetterHistoryContext)
+    const { setToastVisible, setToastMessage, setToastTheme } = useContext(ToastContext)
 
     useEffect(() => {
         const newValues = [...inputValues, ...template.variables]
@@ -86,6 +88,9 @@ function GenerateCoverLetterForm({ template, closeModal }) {
         })
         .catch(function (error) {
             console.error(error);
+            setToastMessage('Error: Cover letter could not be sent to server')
+            setToastTheme('danger')
+            setToastVisible(true)
         });
         
         closeModal()
