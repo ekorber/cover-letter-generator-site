@@ -163,6 +163,14 @@ Best Regards,
     e.preventDefault()
 
     for (var i = 0; i < template.variables.length; i++) {
+
+      if (template.variables[i].varName.includes('[') || template.variables[i].varName.includes(']')) {
+        setToastMessage(`Error: Variable names cannot include the square brackets [ or ]`)
+        setToastTheme('danger')
+        setToastVisible(true)
+        return
+      }
+
       for (var j = 0; j < template.variables.length; j++) {
         if (i === j) {
           continue
