@@ -6,6 +6,7 @@ import RedButton from "../components/buttons/btn-red";
 import UserContext from "../contexts/UserContext";
 import { API_USER_PROFILE_UPDATE } from "../apiRoutes";
 import Toast from "../components/toast";
+import MobileMenu from "../components/menus/mobile-menu";
 
 function ProfileSettingsPage() {
 
@@ -39,6 +40,7 @@ function ProfileSettingsPage() {
     //Server submission here
     axios.post(API_USER_PROFILE_UPDATE, profile)
     .then(function (response) {
+      
       //Update context upon successful submission
       setUserData(response.data)
       setToastVisible(true)
@@ -50,10 +52,8 @@ function ProfileSettingsPage() {
 
   return (
     <>
-      <div className="m-5">
-        <BlueButton to="/dashboard" className='mb-4 w-56'>Back to Dashboard</BlueButton>
-      </div>
-      <div className="flex flex-col xl:flex-row xl:gap-10">
+      <MobileMenu />
+      <div className="flex flex-col xl:flex-row xl:gap-10 mt-12">
         <div className="w-full xl:flex-end max-w-xl p-5 mx-auto xl:ml-auto xl:mr-0">
           <h1 className="font-bold text-center text-2xl mb-5">Default Settings</h1>
           <p className="text-center text-md mb-12 xl:mb-5">These are the defaults used to populate your templates, when generating a cover letter.</p>
