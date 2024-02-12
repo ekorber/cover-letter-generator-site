@@ -5,10 +5,12 @@ import { API_USER_HISTORY_COVER_LETTERS_DELETE } from "../apiRoutes";
 import { useContext } from "react";
 import CoverLetterHistoryContext from "../contexts/CoverLetterHistoryContext";
 import { generateWordDocument } from "../utils/doc-generator";
+import ToastContext from "../contexts/ToastContext";
 
 function HistoryListItem({ coverLetterData, className }) {
 
     const { setCoverLetterHistory } = useContext(CoverLetterHistoryContext)
+    const { setToastVisible, setToastMessage, setToastTheme } = useContext(ToastContext)
 
     function deleteFromHistory() {
         axios.post(API_USER_HISTORY_COVER_LETTERS_DELETE, {id: coverLetterData.id})
@@ -17,6 +19,9 @@ function HistoryListItem({ coverLetterData, className }) {
         })
         .catch(function (error) {
             console.error(error);
+            setToastMessage('Error: Cover letter could not be deleted from server')
+            setToastTheme('danger')
+            setToastVisible(true)
         });
     }
 
