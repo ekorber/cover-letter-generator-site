@@ -9,10 +9,12 @@ import TemplateContext from "../contexts/TemplateContext";
 import Modal from "../layouts/modal";
 import GenerateCoverLetterForm from "./generate-cover-letter-form";
 import { API_USER_TEMPLATES_DELETE } from "../apiRoutes";
+import ToastContext from "../contexts/ToastContext";
 
 function TemplateCard({ template, isListItem=true }) {
 
     const { setTemplates } = useContext(TemplateContext)
+    const { setToastVisible, setToastMessage, setToastTheme } = useContext(ToastContext)
     const [isModalOpen, setModalOpen] = useState(false)
 
     function openModal(id) {
@@ -27,6 +29,9 @@ function TemplateCard({ template, isListItem=true }) {
         })
         .catch(function (error) {
             console.error(error);
+            setToastMessage('Error: Template could not be deleted from server')
+            setToastTheme('danger')
+            setToastVisible(true)
         });
     }
 
