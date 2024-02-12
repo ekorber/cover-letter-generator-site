@@ -62,6 +62,7 @@ function ProfileSettingsPage() {
             <label>First Name <input
                 type="text"
                 name="fname"
+                maxLength={100}
                 className="w-full p-2 border-2 border-slate-200 shadow-inner"
                 value={profile.fname}
                 onChange={handleChange} /></label>
@@ -69,6 +70,7 @@ function ProfileSettingsPage() {
             <label>Last Name <input
                 type="text"
                 name="lname"
+                maxLength={100}
                 className="w-full p-2 border-2 border-slate-200 shadow-inner"
                 value={profile.lname}
                 onChange={handleChange} /></label>
@@ -76,6 +78,7 @@ function ProfileSettingsPage() {
             <label>Email* <input
                 type="email"
                 name="email"
+                maxLength={100}
                 className="w-full p-2 border-2 border-slate-200 shadow-inner"
                 value={profile.email}
                 onChange={handleChange} /></label>
@@ -83,6 +86,7 @@ function ProfileSettingsPage() {
             <label>Phone Number <input
                 type="tel"
                 name="phoneNumber"
+                maxLength={50}
                 className="w-full p-2 border-2 border-slate-200 shadow-inner"
                 value={profile.phoneNumber}
                 onChange={handleChange} /></label>
@@ -90,6 +94,7 @@ function ProfileSettingsPage() {
             <label>Website <input
                 type="url"
                 name="website"
+                maxLength={200}
                 className="w-full p-2 border-2 border-slate-200 shadow-inner"
                 value={profile.website}
                 onChange={handleChange} /></label>

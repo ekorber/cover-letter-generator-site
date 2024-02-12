@@ -181,6 +181,7 @@ Best Regards,
             
             <label className="font-light">Template Name (Job or Industry)<input
                 required
+                maxLength={40}
                 type="text"
                 name="tname"
                 className="w-full mt-3 p-2 font-normal border-2 border-slate-200 shadow-inner"
@@ -197,6 +198,7 @@ Best Regards,
               <div key={item.id} className="flex gap-3">
                 <input
                   required
+                  maxLength={50}
                   type="text"
                   name="varName"
                   className="w-full p-2 border-2 border-slate-200 shadow-inner"
@@ -204,6 +206,7 @@ Best Regards,
                   value={item.varName}
                   onChange={(e) => handleVariableChange(e, item.id)}/>
                 <input
+                  maxLength={250}
                   type="text"
                   name="varValue"
                   className="w-full p-2 border-2 border-slate-200 shadow-inner"
@@ -220,6 +223,7 @@ Best Regards,
 
             <label className="font-light">Template Body <textarea
               required
+              maxLength={5000}
               rows={10}
               type="text"
               name="body"
