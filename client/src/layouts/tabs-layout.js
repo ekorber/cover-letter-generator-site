@@ -41,7 +41,7 @@ export function Tabs({ children, className }) {
 
                     return (
                         <TabListItem key={label} onClick={() => setCurrentTab(label)} className={label === currentTab ? 'active' : ''}>
-                            <button className='w-32 font-semibold'>{label}</button>
+                            <button className='w-22 font-semibold text-center'>{label}</button>
                         </TabListItem>
                     )
                 })}

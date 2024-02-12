@@ -7,10 +7,6 @@ import BlueButton from "../buttons/btn-blue";
 const MenuButton = styled.button`
     position: fixed;
     z-index: 100;
-
-    @media (min-width: 1279) {
-        right: 10px;
-    }
 `;
 
 const Menu = styled.div`
