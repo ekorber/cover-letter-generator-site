@@ -24,7 +24,7 @@ function DashboardPage() {
       {
         (windowWidth > 1279) ?
           <div>
-            <p className='text-2xl px-10 pt-7 pb-5 font-bold'>COVER LETTERS</p>
+            <p className='text-2xl px-9 pt-6 pb-5 font-bold'>COVER LETTERS</p>
             <SplitLayout split={80} className='px-5 pb-5 gap-5'>
               <div className=''>
                 <StickyScrollLayout height='87dvh' className='rounded-lg bg-cyan-400 shadow-lg'>

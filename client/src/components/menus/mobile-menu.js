@@ -6,9 +6,11 @@ import BlueButton from "../buttons/btn-blue";
 
 const MenuButton = styled.button`
     position: fixed;
-    top: 27px;
-    right: 22px;
     z-index: 100;
+
+    @media (min-width: 1279) {
+        right: 10px;
+    }
 `;
 
 const Menu = styled.div`
@@ -49,7 +51,7 @@ function MobileMenu() {
 
     return (
         <>
-            <MenuButton onClick={toggleMenu}><MenuIcon width={30} height={30} strokeWidth={1} /></MenuButton>
+            <MenuButton onClick={toggleMenu} className="right-6 top-7 xl:top-6 xl:right-8"><MenuIcon width={30} height={30} strokeWidth={1} /></MenuButton>
             {isOpen && <Menu>
                 <ul>
                     <li className="m-7 text-center"><BlueButton onClick={() => handleMenuButtonClick('/dashboard')} className='w-full max-w-xl h-24'>COVER LETTERS</BlueButton></li>
