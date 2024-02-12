@@ -19,6 +19,7 @@ export function getFormattedCurrentDate() {
         case 9: formattedMonth = 'October'; break;
         case 10: formattedMonth = 'November'; break;
         case 11: formattedMonth = 'December'; break;
+        default: formattedMonth = '';
     }
 
     return `${formattedMonth} ${day}, ${year}`
