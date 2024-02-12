@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MenuIcon from "../svg/menu-icon";
 import BlueButton from "../buttons/btn-blue";
 
@@ -32,9 +32,19 @@ const Menu = styled.div`
 
 function MobileMenu() {
     const [isOpen, setIsOpen] = useState(false)
+    const location = useLocation()
+    const navigate = useNavigate()
 
     function toggleMenu() {
         setIsOpen(!isOpen)
+    }
+
+    function handleMenuButtonClick(route) {
+        if (route === location.pathname) {
+            toggleMenu()
+        } else {
+            navigate(route)
+        }
     }
 
     return (
@@ -42,9 +52,9 @@ function MobileMenu() {
             <MenuButton onClick={toggleMenu}><MenuIcon width={30} height={30} strokeWidth={1} /></MenuButton>
             {isOpen && <Menu>
                 <ul>
-                    <Link to='/dashboard'><li className="m-7 text-center"><BlueButton className='w-full max-w-xl h-24'>COVER LETTERS</BlueButton></li></Link>
-                    <Link to='/profile'><li className="m-7 text-center"><BlueButton className='w-full max-w-xl h-24'>MY PROFILE</BlueButton></li></Link>
-                    <Link to='/'><li className="m-7 text-center"><BlueButton className='w-full max-w-xl h-24'>SIGN OUT</BlueButton></li></Link>
+                    <li className="m-7 text-center"><BlueButton onClick={() => handleMenuButtonClick('/dashboard')} className='w-full max-w-xl h-24'>COVER LETTERS</BlueButton></li>
+                    <li className="m-7 text-center"><BlueButton onClick={() => handleMenuButtonClick('/profile')} className='w-full max-w-xl h-24'>MY PROFILE</BlueButton></li>
+                    <li className="m-7 text-center"><BlueButton onClick={() => handleMenuButtonClick('/')} className='w-full max-w-xl h-24'>SIGN OUT</BlueButton></li>
                 </ul>
             </Menu>}
         </>
