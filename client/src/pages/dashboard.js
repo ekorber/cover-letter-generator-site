@@ -23,18 +23,21 @@ function DashboardPage() {
       <MobileMenu />
       {
         (windowWidth > 1279) ?
-          <SplitLayout split={80} className='p-5 gap-5'>
-            <div className='mt-16'>
-              <StickyScrollLayout height='87dvh' className='rounded-lg bg-cyan-400 shadow-lg'>
-                <TemplateGrid />
-              </StickyScrollLayout>
-            </div>
-            <div className='mt-16'>
-              <StickyScrollLayout height='87dvh' className='rounded-lg bg-emerald-300 shadow-sm'>
-                <HistoryList />
-              </StickyScrollLayout>
-            </div>
-          </SplitLayout>
+          <div>
+            <p className='text-2xl px-10 pt-7 pb-5 font-bold'>COVER LETTERS</p>
+            <SplitLayout split={80} className='px-5 pb-5 gap-5'>
+              <div className=''>
+                <StickyScrollLayout height='87dvh' className='rounded-lg bg-cyan-400 shadow-lg'>
+                  <TemplateGrid />
+                </StickyScrollLayout>
+              </div>
+              <div className=''>
+                <StickyScrollLayout height='87dvh' className='rounded-lg bg-emerald-300 shadow-sm'>
+                  <HistoryList />
+                </StickyScrollLayout>
+              </div>
+            </SplitLayout>
+          </div>
         :
           <Tabs className='p-5'>
             <Tab label='Templates'>
