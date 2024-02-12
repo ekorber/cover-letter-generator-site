@@ -34,6 +34,8 @@ const Toast = ({ message, isVisible, onClose, showCloseButton=false, theme='' })
   
   if (theme === 'success') {
     background = 'bg-gradient-to-b from-green-500 to-green-700 border-green-700'
+  } else if (theme === 'danger') {
+    background = 'bg-gradient-to-b from-red-500 to-red-700 border-red-700'
   } else {
     background = 'bg-gradient-to-b from-slate-800 to-black border-black'
   }
