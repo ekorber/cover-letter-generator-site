@@ -85,6 +85,9 @@ function GenerateCoverLetterForm({ template, closeModal }) {
         axios.post(API_USER_HISTORY_COVER_LETTERS_SUBMIT, historyObject)
         .then(function (response) {
             setCoverLetterHistory([...coverLetterHistory, historyObject])
+            setToastMessage('Cover letter successfully created')
+            setToastTheme('success')
+            setToastVisible(true)
         })
         .catch(function (error) {
             console.error(error);
