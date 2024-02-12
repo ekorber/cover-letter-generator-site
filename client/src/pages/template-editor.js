@@ -9,6 +9,7 @@ import GreenButton from "../components/buttons/btn-green";
 import TemplateContext from '../contexts/TemplateContext';
 import UserContext from "../contexts/UserContext";
 import { API_USER_TEMPLATES_SUBMIT } from "../apiRoutes";
+import ToastContext from "../contexts/ToastContext";
 
 function TemplateEditorPage() {
 
@@ -63,6 +64,7 @@ Best Regards,
   const { templateId } = useParams()
   const { templates } = useContext(TemplateContext)
   const { userData } = useContext(UserContext)
+  const { setToastVisible, setToastMessage, setToastTheme } = useContext(ToastContext)
 
   useEffect(() => {
 
@@ -163,10 +165,15 @@ Best Regards,
     //Server submission here
     axios.post(API_USER_TEMPLATES_SUBMIT, {new: (templateId === 'new'), template})
     .then(function (response) {
-        navigate('/dashboard')
+      setToastMessage('Template created successfully')
+      setToastTheme('success')
+      setToastVisible(true)
+      navigate('/dashboard')
     })
     .catch(function (error) {
-        console.error(error);
+      setToastMessage('Error: Template could not be saved')
+      setToastTheme('danger')
+      setToastVisible(true)
     });
   }
 
