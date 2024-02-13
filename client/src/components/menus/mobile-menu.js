@@ -45,16 +45,22 @@ function MobileMenu() {
         }
     }
 
+    const transitionStyle = {
+        transition: 'opacity 0.3s ease, transform 0.3s ease',
+        opacity: isOpen ? '1' : '0',
+        transform: isOpen ? 'translateX(0)' : 'translateX(100%)'
+    }
+
     return (
         <>
             <MenuButton onClick={toggleMenu} className="right-6 top-7 xl:top-6 xl:right-8"><MenuIcon width={30} height={30} strokeWidth={1} /></MenuButton>
-            {isOpen && <Menu>
+            <Menu style={transitionStyle}>
                 <ul>
                     <li className="m-7 text-center"><BlueButton onClick={() => handleMenuButtonClick('/dashboard')} className='w-full max-w-xl h-24'>COVER LETTERS</BlueButton></li>
                     <li className="m-7 text-center"><BlueButton onClick={() => handleMenuButtonClick('/profile')} className='w-full max-w-xl h-24'>MY PROFILE</BlueButton></li>
                     <li className="m-7 text-center"><BlueButton onClick={() => handleMenuButtonClick('/')} className='w-full max-w-xl h-24'>SIGN OUT</BlueButton></li>
                 </ul>
-            </Menu>}
+            </Menu>
         </>
     );
 }
