@@ -29,6 +29,11 @@ const Toast = ({ message, isVisible, onClose, showCloseButton=false, theme, time
     }
   }, [isVisible])
 
+  const transitionStyle = {
+    transition: 'opacity 0.3s ease',
+    opacity: isVisible ? '1' : '0',
+  }
+
   //Set background color
   let background = ''
   
@@ -41,17 +46,12 @@ const Toast = ({ message, isVisible, onClose, showCloseButton=false, theme, time
   }
 
   // Render based on visibility
-  if (isVisible) {
-    return (
-        <ToastContainer className={background}>
-          <p>{message}</p>
-          {showCloseButton && <CloseButton onClick={onClose}>X</CloseButton>}
-        </ToastContainer>
-      )
-  } else {
-    return null
-  }
-
+  return (
+    <ToastContainer className={background} style={transitionStyle}>
+      <p>{message}</p>
+      {showCloseButton && <CloseButton onClick={onClose}>X</CloseButton>}
+    </ToastContainer>
+  )
 };
 
 export default Toast;
