@@ -25,7 +25,7 @@ function GenerateCoverLetterForm({ template, closeModal }) {
     ])
 
     const { coverLetterHistory, setCoverLetterHistory } = useContext(CoverLetterHistoryContext)
-    const { setToastVisible, setToastMessage, setToastTheme } = useContext(ToastContext)
+    const { showToast } = useContext(ToastContext)
 
     useEffect(() => {
         const newValues = [...inputValues, ...template.variables]
@@ -85,15 +85,12 @@ function GenerateCoverLetterForm({ template, closeModal }) {
         axios.post(API_USER_HISTORY_COVER_LETTERS_SUBMIT, historyObject)
         .then(function (response) {
             setCoverLetterHistory([...coverLetterHistory, historyObject])
-            setToastMessage('Cover letter successfully created')
-            setToastTheme('success')
-            setToastVisible(true)
+            showToast("Cover letter successfully created", 'success', 3000)
         })
         .catch(function (error) {
             console.error(error);
-            setToastMessage('Error: Cover letter could not be sent to server')
-            setToastTheme('danger')
-            setToastVisible(true)
+
+            showToast("Error: Cover letter could not be sent to server", 'danger', 3000)
         });
         
         closeModal()

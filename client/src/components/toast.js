@@ -20,14 +20,14 @@ const CloseButton = styled.button`
   cursor: pointer;
 `;
 
-const Toast = ({ message, isVisible, onClose, showCloseButton=false, theme='' }) => {
+const Toast = ({ message, isVisible, onClose, showCloseButton=false, theme, timeout }) => {
 
   useEffect(() => {
     if (isVisible) {
-      const timer = setTimeout(onClose, 3000) // Toast disappears after 3 seconds
+      const timer = setTimeout(onClose, timeout)
       return () => clearTimeout(timer)
     }
-  }, [isVisible, onClose])
+  }, [isVisible])
 
   //Set background color
   let background = ''

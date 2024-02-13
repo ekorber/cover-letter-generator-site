@@ -14,7 +14,7 @@ import ToastContext from "../contexts/ToastContext";
 function TemplateCard({ template, isListItem=true }) {
 
     const { setTemplates } = useContext(TemplateContext)
-    const { setToastVisible, setToastMessage, setToastTheme } = useContext(ToastContext)
+    const { showToast } = useContext(ToastContext)
     const [isModalOpen, setModalOpen] = useState(false)
 
     function openModal(id) {
@@ -29,9 +29,7 @@ function TemplateCard({ template, isListItem=true }) {
         })
         .catch(function (error) {
             console.error(error);
-            setToastMessage('Error: Template could not be deleted from server')
-            setToastTheme('danger')
-            setToastVisible(true)
+            showToast("Error: Template could not be deleted from server", 'danger', 3000)
         });
     }
 

@@ -64,7 +64,7 @@ Best Regards,
   const { templateId } = useParams()
   const { templates } = useContext(TemplateContext)
   const { userData } = useContext(UserContext)
-  const { setToastVisible, setToastMessage, setToastTheme } = useContext(ToastContext)
+  const { showToast } = useContext(ToastContext)
 
   useEffect(() => {
 
@@ -165,9 +165,7 @@ Best Regards,
     for (var i = 0; i < template.variables.length; i++) {
 
       if (template.variables[i].varName.includes('[') || template.variables[i].varName.includes(']')) {
-        setToastMessage(`Error: Variable names cannot include the square brackets [ or ]`)
-        setToastTheme('danger')
-        setToastVisible(true)
+        showToast('Error: Variable names cannot include the square brackets [ or ]', 'danger', 4000)
         return
       }
 
@@ -175,9 +173,7 @@ Best Regards,
         if (i === j) {
           continue
         } else if (template.variables[i].varName === template.variables[j].varName) {
-          setToastMessage(`Error: There are multiple variables named \"${template.variables[i].varName}\". All variables must have different names.`)
-          setToastTheme('danger')
-          setToastVisible(true)
+          showToast(`Error: There are multiple variables named \"${template.variables[i].varName}\". All variables must have different names.`, 'danger', 5000)
           return
         }
       } 
@@ -186,15 +182,11 @@ Best Regards,
     //Server submission here
     axios.post(API_USER_TEMPLATES_SUBMIT, {new: (templateId === 'new'), template})
     .then(function (response) {
-      setToastMessage('Template created successfully')
-      setToastTheme('success')
-      setToastVisible(true)
+      showToast('Template created successfully', 'success', 3000)
       navigate('/dashboard')
     })
     .catch(function (error) {
-      setToastMessage('Error: Template could not be saved')
-      setToastTheme('danger')
-      setToastVisible(true)
+      showToast('Error: Template could not be saved', 'danger', 3000)
     });
   }
 

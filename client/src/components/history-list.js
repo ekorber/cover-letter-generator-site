@@ -8,7 +8,7 @@ import ToastContext from "../contexts/ToastContext";
 function HistoryList() {
 
     const { coverLetterHistory, setCoverLetterHistory } = useContext(CoverLetterHistoryContext)
-    const { setToastVisible, setToastMessage, setToastTheme } = useContext(ToastContext)
+    const { showToast } = useContext(ToastContext)
 
     useEffect(() => {
         axios.post(API_USER_HISTORY_COVER_LETTERS)
@@ -17,9 +17,7 @@ function HistoryList() {
         })
         .catch(function (error) {
             console.error(error);
-            setToastMessage("Error: Couldn't load cover letters from server")
-            setToastTheme('danger')
-            setToastVisible(true)
+            showToast("Error: Couldn't load cover letters from server", 'danger', 3000)
         });
     }, []); // Empty dependency array means this effect runs once on mount
 

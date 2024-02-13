@@ -9,7 +9,7 @@ import ToastContext from "../contexts/ToastContext";
 function TemplateGrid() {
 
     const { templates, setTemplates } = useContext(TemplateContext)
-    const { setToastVisible, setToastMessage, setToastTheme } = useContext(ToastContext)
+    const { showToast } = useContext(ToastContext)
 
     useEffect(() => {
         axios.post(API_USER_TEMPLATES)
@@ -18,9 +18,7 @@ function TemplateGrid() {
         })
         .catch(function (error) {
             console.error(error);
-            setToastMessage("Error: Couldn't load templates from server")
-            setToastTheme('danger')
-            setToastVisible(true)
+            showToast("Error: Couldn't load templates from server", 'danger', 3000)
         });
     }, []); // Empty dependency array means this effect runs once on mount
 

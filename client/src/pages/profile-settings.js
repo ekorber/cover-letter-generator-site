@@ -9,7 +9,7 @@ import ToastContext from "../contexts/ToastContext";
 
 function ProfileSettingsPage() {
   const { userData, setUserData } = useContext(UserContext)
-  const { setToastVisible, setToastMessage, setToastTheme } = useContext(ToastContext)
+  const { showToast } = useContext(ToastContext)
   const [profile, setProfile] = useState({
     fname: '',
     lname: '',
@@ -40,15 +40,11 @@ function ProfileSettingsPage() {
     .then(function (response) {
       //Update contexts upon successful submission
       setUserData(response.data)
-      setToastMessage('Updates Saved Successfully')
-      setToastTheme('success')
-      setToastVisible(true)
+      showToast('Updates Saved Successfully', 'success', 3000)
     })
     .catch(function (error) {
       console.error(error);
-      setToastMessage('Error: Updates could not be saved')
-      setToastTheme('danger')
-      setToastVisible(true)
+      showToast('Error: Updates could not be saved', 'danger', 3000)
     });
   }
 
