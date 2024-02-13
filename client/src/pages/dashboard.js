@@ -4,7 +4,6 @@ import HistoryList from '../components/history-list';
 import TemplateGrid from '../components/template-grid';
 import Tabs, { Tab } from '../layouts/tabs-layout';
 import { useEffect, useState } from 'react';
-import MobileMenu from '../components/menus/mobile-menu';
 
 function DashboardPage() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
@@ -26,7 +25,6 @@ function DashboardPage() {
 
   return (
     <>
-      <MobileMenu />
       {
         (windowWidth > 1279) ?
           <div>

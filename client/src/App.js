@@ -8,11 +8,13 @@ import SignUpPage from './pages/signup';
 import ProfileSettingsPage from './pages/profile-settings';
 import TemplateEditorPage from './pages/template-editor';
 import MultiContextProvider from './contexts/MultiContextProvider';
+import MobileMenu from './components/menus/mobile-menu';
 
 function App() {
   return (
     <MultiContextProvider>
       <BrowserRouter>
+        <MobileMenu />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<DashboardPage />} />

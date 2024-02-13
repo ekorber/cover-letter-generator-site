@@ -5,7 +5,6 @@ import PurpleButton from "../components/buttons/btn-purple";
 import RedButton from "../components/buttons/btn-red";
 import UserContext from "../contexts/UserContext";
 import { API_USER_PROFILE_UPDATE } from "../apiRoutes";
-import MobileMenu from "../components/menus/mobile-menu";
 import ToastContext from "../contexts/ToastContext";
 
 function ProfileSettingsPage() {
@@ -55,7 +54,6 @@ function ProfileSettingsPage() {
 
   return (
     <>
-      <MobileMenu />
       <div className="flex flex-col xl:flex-row xl:gap-10 mt-12">
         <div className="w-full xl:flex-end max-w-xl p-5 mx-auto xl:ml-auto xl:mr-0">
           <h1 className="font-bold text-center text-2xl mb-5">Default Settings</h1>

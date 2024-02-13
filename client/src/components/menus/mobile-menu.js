@@ -38,11 +38,10 @@ function MobileMenu() {
     }
 
     function handleMenuButtonClick(route) {
-        if (route === location.pathname) {
-            toggleMenu()
-        } else {
+        if (route !== location.pathname) {
             navigate(route)
         }
+        toggleMenu()
     }
 
     const transitionStyle = {
