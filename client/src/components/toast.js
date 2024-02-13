@@ -30,8 +30,9 @@ const Toast = ({ message, isVisible, onClose, showCloseButton=false, theme, time
   }, [isVisible])
 
   const transitionStyle = {
-    transition: 'opacity 0.3s ease',
+    transition: 'opacity 0.5s ease, transform 0.3s ease',
     opacity: isVisible ? '1' : '0',
+    transform: isVisible ? 'translateX(0px)' : 'translateX(150%)'
   }
 
   //Set background color
