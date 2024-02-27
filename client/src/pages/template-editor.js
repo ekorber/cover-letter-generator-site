@@ -182,7 +182,7 @@ Best Regards,
     //Server submission here
     axios.post(API_USER_TEMPLATES_SUBMIT, {new: (templateId === 'new'), template})
     .then(function (response) {
-      showToast('Template created successfully', 'success', 3000)
+      showToast('Template saved successfully', 'success', 3000)
       navigate('/dashboard')
     })
     .catch(function (error) {
